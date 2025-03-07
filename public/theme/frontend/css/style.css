@@ -1635,3 +1635,7 @@ ul.detail_features li strong {
     color: #000;
     background-color: #ffeb9a;
 }
+
+.box-height{
+    min-height: 85px;
+}

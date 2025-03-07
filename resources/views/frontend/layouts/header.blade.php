@@ -56,7 +56,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light"> 
                     <a href="{{ asset('') }}" class="navbar-brand p-0">
-                        <img src="{{ asset('theme') }}/frontend/img/logo-white.svg" alt="Logo" class="w-100">
+                        <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" class="w-100">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
@@ -68,8 +68,18 @@
                             <!-- <a href="{{ url('properties')}}" class="nav-item {{ Request::is('properties') ? 'active' : '' }}">PROPERTIES</a>
                             <a href="{{ url('referral-program')}}" class="nav-item {{ Request::is('referral-program') ? 'active' : '' }}">REFERRALS</a>
                             <a href="https://jfinserv.com/blog/" class="nav-item {{ Request::is('blog') ? 'active' : '' }}">BLOGS</a> -->
-                            <div class="nav-btn px-3">
+                            <!-- <div class="nav-btn px-3">
                                 <a href="{{ url('contact')}}" class="btn btn-primary rounded-1 py-2 px-4 ms-3 flex-shrink-0 nav-item {{ Request::is('contact') ? 'active' : '' }}">CONTACT</a>
+                            </div> -->
+
+                            <!-- Social Icons -->
+                            <div class="nav-btn d-flex">
+                                <a class="btn btn-md-square rounded-circle me-3" href="https://www.linkedin.com/company/jfinserv-consultant-india-private-limited/"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/profile.php?id=61563098494542"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-md-square rounded-circle me-3" href="https://twitter.com/jfinserv9668"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/jfinserv_consultant/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-md-square rounded-circle me-3" href="https://api.whatsapp.com/send?phone=917385551623&text=Hello,%20I%27m%20looking%20for"><i class="fab fa-whatsapp"></i></a>
+                                <a class="btn btn-md-square rounded-circle me-0" href="tel:917385551623"><i class="fas fa-phone"></i></a>
                             </div>
                         </div>
                     </div>
@@ -112,18 +122,6 @@
                                             <label for="contact">Your Phone</label>
                                         </div>
                                         
-                                    </div>
-                                    <div class="col-lg-12 col-xl-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="amount" name="amount"  value="{{ old('amount') }}" placeholder="Amount" required>
-                                            <label for="amount">Amount</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="address" name="address" value="{{ old('address') }}" placeholder="Address" required>
-                                            <label for="address">Address</label>
-                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
@@ -175,20 +173,9 @@
         {{-- end main content --}}
 
         @include('frontend.layouts.footer') 
-        
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/674454c34304e3196ae835c0/1idhem7ek';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-            })();
-        </script>
-        <!--End of Tawk.to Script-->
-    </body>
-    
+
+        <a href="#" class="whatsapp-icon" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="fas fa-envelope-open-text fa-2x"></i>
+        </a>
+    </body>    
 </html>

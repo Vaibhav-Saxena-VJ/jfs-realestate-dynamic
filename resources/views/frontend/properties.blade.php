@@ -127,22 +127,35 @@
                                         </div>
 
                                         <!-- BHK Type -->
-                                        <div class="col-md-3 bhk-status">
-                                            <select class="form-select">
-                                                <option>Select BHK</option>
-                                                <option>1 BHK</option>
-                                                <option>2 BHK</option>
-                                                <option>3 BHK</option>
-                                            </select>
+                                        <div class="col-md-3 bhk-status position-relative">
+                                            <button class="btn btn-light border w-100 text-start" id="bhkDropdownBtn">
+                                                Select BHK
+                                            </button>
+                                            <div class="dropdown-menu w-100 p-2" id="bhkDropdown" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="bhk1">
+                                                    <label class="form-check-label" for="bhk1">1 BHK</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="bhk2">
+                                                    <label class="form-check-label" for="bhk2">2 BHK</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="bhk3">
+                                                    <label class="form-check-label" for="bhk3">3 BHK</label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <!-- Property Status -->
-                                        <div class="col-md-3 bhk-status">
-                                            <select class="form-select">
-                                                <option>Property Status</option>
-                                                <option>Under Construction</option>
-                                                <option>Ready to Move</option>
-                                            </select>
+                                        <div class="col-md-3 bhk-status position-relative">
+                                            <button class="btn btn-light border w-100 text-start" id="propertyStatusDropdownBtn">
+                                                Property Status
+                                            </button>
+                                            <div class="dropdown-menu w-100 p-2" id="propertyStatusDropdown" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000;">
+                                                <div class="dropdown-item">Under Construction</div>
+                                                <div class="dropdown-item">Ready to Move</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -894,6 +907,35 @@ $(document).ready(function() {
         // Initial state check
         toggleFields();
     });
+</script>
+<script>
+    function setupDropdown(btnId, dropdownId) {
+        const button = document.getElementById(btnId);
+        const dropdown = document.getElementById(dropdownId);
+
+        button.addEventListener("mouseenter", function () {
+            dropdown.style.display = "block";
+        });
+
+        button.addEventListener("mouseleave", function (event) {
+            if (!dropdown.contains(event.relatedTarget)) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        dropdown.addEventListener("mouseleave", function () {
+            dropdown.style.display = "none";
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = "none";
+            }
+        });
+    }
+
+    setupDropdown("bhkDropdownBtn", "bhkDropdown");
+    setupDropdown("propertyStatusDropdownBtn", "propertyStatusDropdown");
 </script>
 
 <script>

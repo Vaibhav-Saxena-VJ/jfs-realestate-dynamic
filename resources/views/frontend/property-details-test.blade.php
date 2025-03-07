@@ -297,7 +297,7 @@
                                                 @foreach($nearby_locations as $location)
                                                     @if(!empty($location))
                                                         <div class="col-md-4 col-sm-6">
-                                                            <div class="d-flex align-items-center border p-3 rounded">
+                                                            <div class="d-flex align-items-center border p-3 rounded box-height">
                                                                 <i class="fas fa-location me-2"></i>
                                                                 <span>{{ $location }}</span>
                                                             </div>

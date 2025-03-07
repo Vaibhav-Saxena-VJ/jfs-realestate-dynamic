@@ -55,7 +55,7 @@ Add Property Banners
                     @foreach ($banners as $banner)
                         <tr>
                             <td>
-                                <img src="{{ asset('storage/' . $banner->image) }}" width="100">
+                                <img src="{{ Storage::url($banner->image) }}" width="100">
                             </td>
                             <td>{{ $banner->title }}</td>
                             <td>

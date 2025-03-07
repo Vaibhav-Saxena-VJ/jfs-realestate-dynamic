@@ -812,7 +812,7 @@
                                 <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="h5 d-inline-block">
                                     {{ Str::limit($blog->title, 40) }}
                                 </a>
-                                <p class="mb-3">{!! Str::limit(strip_tags($blog->description), 100) !!}</p>
+                                <p class="mb-3">{!! Str::limit(strip_tags($blog->description), 70) !!}</p>
                                 <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="btn p-0">
                                     Read More <i class="fa fa-arrow-right"></i>
                                 </a>

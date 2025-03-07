@@ -2,71 +2,46 @@
 <div class="container-fluid footer wow fadeIn" data-wow-delay="0.2s">
     <div class="container">
         <div class="row g-5">
-            <div class="col-xl-9">
-                <div class="mb-5">
-                    <div class="row g-4">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="footer-item">
-                                <a href="{{ url('/') }}" class="pb-3">
-                                    <!-- <h3 class="text-white"><i class="fab fa-slack me-3"></i> LifeSure</h3> -->
-                                    <img src="{{ asset('theme') }}/frontend/img/logo-white.svg" alt="Logo" width="50%">
-                                </a>
-                                <p class="text-white mb-4">Jfinserv Consultant India Private Limited with many finance partners strives to get you the best loan deals and offers online in just a few clicks.</p>
-                                <div class="footer-btn d-flex">
-                                    <a class="btn btn-md-square rounded-circle me-3" href="https://www.linkedin.com/company/jfinserv-consultant-india-private-limited/"><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/profile.php?id=61563098494542"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-md-square rounded-circle me-3" href="https://twitter.com/jfinserv9668"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/jfinserv_consultant/"><i class="fab fa-instagram"></i></a>
-                                        <a class="btn btn-md-square rounded-circle me-0" href="https://api.whatsapp.com/send?phone=917385551623&text=Hello,%20I%27m%20looking%20for"><i class="fab fa-whatsapp"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="footer-item">
-                                    <h4 class="text-white mb-4">Useful Links</h4>
-                                    <a href="/about"><i class="fas fa-angle-right me-2"></i> About Us</a>
-                                    <a href="/referral-program"><i class="fas fa-angle-right me-2"></i> Referrals</a>
-                                    <a href="/services"><i class="fas fa-angle-right me-2"></i> Services</a>
-                                    <!-- <a href="/login"><i class="fas fa-angle-right me-2"></i> Track Loan</a> -->
-                                    <a href="#"><i class="fas fa-angle-right me-2"></i> Blogs</a>
-                                    <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact</a>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="footer-item">
-                                    <h4 class="text-white mb-4">Services</h4>
-                                    <a href="/about"><i class="fas fa-angle-right me-2"></i> Home Loan</a>
-                                    <a href="/referral-program"><i class="fas fa-angle-right me-2"></i> Loan Against Property</a>
-                                    <a href="/services"><i class="fas fa-angle-right me-2"></i> Project Loan</a>
-                                    <a href="/login"><i class="fas fa-angle-right me-2"></i> Overdraft Facility</a>
-                                    <a href="#"><i class="fas fa-angle-right me-2"></i> MSME Loan</a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="footer-item">
+                    <a href="{{ url('/') }}" class="pb-3">
+                        <!-- <h3 class="text-white"><i class="fab fa-slack me-3"></i> LifeSure</h3> -->
+                        <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" width="35%">
+                    </a>
+                    <p class="text-white mb-4">Jfinserv Consultant India Private Limited with many finance partners strives to get you the best loan deals and offers online in just a few clicks.</p>
+                    <div class="footer-btn d-flex">
+                        <a class="btn btn-md-square rounded-circle me-3" href="https://www.linkedin.com/company/jfinserv-consultant-india-private-limited/"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/profile.php?id=61563098494542"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-md-square rounded-circle me-3" href="https://twitter.com/jfinserv9668"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/jfinserv_consultant/"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-md-square rounded-circle me-0" href="https://api.whatsapp.com/send?phone=917385551623&text=Hello,%20I%27m%20looking%20for"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                    
-                <div class="col-xl-3">
-                    <div class="footer-item">
-                        <h4 class="text-white mb-4">Reach Us</h4>
-                        <p class="text-white">Office No. 423, Sterling Centre,<br>MG Road, Camp, Pune,<br>Maharashtra 411001.</p>
-                        <p class="text-white m-0"><a href="mailto:contact@jfinserv.com"><span class="text-white"><i class="fas fa-envelope"></i> contact@jfinserv.com</span></a></p>
-                        <p class="text-white mb-3"><a href="tel:917385551623"><span class="text-white"><i class="fa fa-phone-alt"></i> +91 73855 51623</span></a></p>
-                        <!-- <div class="d-flex flex-shrink-0">
-                            <div class="footer-btn">
-                                <a href="#" class="btn btn-lg-square rounded-circle position-relative wow tada" data-wow-delay=".9s">
-                                    <i class="fa fa-phone-alt fa-2x"></i>
-                                    <div class="position-absolute" style="top: 2px; right: 12px;">
-                                        <span><i class="fa fa-comment-dots text-secondary"></i></span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column ms-3 flex-shrink-0">
-                                <span>Call to Our Experts</span>
-                                <a href="tel:917385551623"><span class="text-white">+91 73855 51623</span></a>
-                            </div>
-                        </div> -->
-                    </div>
+            </div>
+            <div class="col-md-2">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">Useful Links</h4>
+                    <a href="/about"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                    <a href="/referral-program"><i class="fas fa-angle-right me-2"></i> Referrals</a>
+                    <a href="/services"><i class="fas fa-angle-right me-2"></i> Services</a>
+                    <!-- <a href="/login"><i class="fas fa-angle-right me-2"></i> Track Loan</a> -->
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Blogs</a>
+                    <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">Reach Us</h4>
+                    <p class="text-white">Office No. 423, Sterling Centre,<br>MG Road, Camp, Pune,<br>Maharashtra 411001.</p>
+                    <p class="text-white m-0"><a href="mailto:contact@jfinserv.com"><span class="text-white"><i class="fas fa-envelope"></i> contact@jfinserv.com</span></a></p>
+                    <p class="text-white mb-3"><a href="tel:917385551623"><span class="text-white"><i class="fa fa-phone-alt"></i> +91 73855 51623</span></a></p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">MahaRERA Details</h4>
+                    <img src="https://www.360realtors.com/images/67ca95a39845f.png" class="ms-4 w-50" alt="Rera Details">
+                    <p class="text-white h5 m-0">Rera No. MG554488770</span></a></p>
                 </div>
             </div>
         </div>
@@ -92,7 +67,8 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+</div>
         
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

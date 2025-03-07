@@ -464,6 +464,11 @@
     transition: 0.5s;
 }
 
+#bannerCarousel .bg-breadcrumb {
+    height: 500px;
+    padding: 150px 0 65px 0;
+}
+
 .bg-breadcrumb .text-center ol{
     display: none !important;
 }
@@ -987,17 +992,17 @@
     background: rgba(0, 0, 0, .6);
 }
 
-.footer .footer-item .footer-btn a {
-    background: var(--bs-light);
+.footer .footer-item .footer-btn a, .nav-btn a {
+    background: #ffeb9a;
     color: var(--bs-primary);
 }
 
-.footer .footer-item .footer-btn a:hover {
+.footer .footer-item .footer-btn a:hover, .nav-btn a:hover {
     background: var(--bs-primary);
 }
 
-.footer .footer-item .footer-btn a:hover i {
-    color: var(--bs-white);
+.footer .footer-item .footer-btn a:hover i, .nav-btn a:hover i {
+    color: #ffeb9a;
 }
 /*** Footer End ***/
 
@@ -1606,4 +1611,27 @@ ul.detail_features li strong {
 .blogs-image{
     height: 250px;
     width: 100%;
+}
+
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 60px;  /* Adjust size as needed */
+    height: 60px;
+    background-color: #000; /* WhatsApp green */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    color: #ffeb9a;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    color: #000;
+    background-color: #ffeb9a;
 }

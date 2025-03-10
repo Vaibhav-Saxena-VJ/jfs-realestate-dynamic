@@ -127,7 +127,7 @@
                                         </div>
 
                                         <!-- BHK Type -->
-                                        <div class="col-md-3 bhk-status position-relative">
+                                        <div class="col-md-3 col-6 bhk-status position-relative">
                                             <button class="btn btn-light border w-100 text-start" id="bhkDropdownBtn">
                                                 Select BHK
                                             </button>
@@ -148,7 +148,7 @@
                                         </div>
 
                                         <!-- Property Status -->
-                                        <div class="col-md-3 bhk-status position-relative">
+                                        <div class="col-md-3 col-6 bhk-status position-relative">
                                             <button class="btn btn-light border w-100 text-start" id="propertyStatusDropdownBtn">
                                                 Property Status
                                             </button>

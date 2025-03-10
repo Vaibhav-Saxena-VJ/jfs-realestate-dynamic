@@ -58,9 +58,9 @@
                     <a href="{{ asset('') }}" class="navbar-brand p-0">
                         <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" class="w-100">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
-                    </button>
+                    </button> -->
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-0 mx-lg-auto">
                             <!-- <a href="{{ url('/') }}" class="nav-item {{ Request::is('/') ? 'active' : '' }}">HOME</a>
@@ -72,7 +72,7 @@
                                 <a href="{{ url('contact')}}" class="btn btn-primary rounded-1 py-2 px-4 ms-3 flex-shrink-0 nav-item {{ Request::is('contact') ? 'active' : '' }}">CONTACT</a>
                             </div> -->
 
-                            <!-- Social Icons -->
+                            <!-- Social Icons
                             <div class="nav-btn d-flex">
                                 <a class="btn btn-md-square rounded-circle me-3" href="https://www.linkedin.com/company/jfinserv-consultant-india-private-limited/"><i class="fab fa-linkedin-in"></i></a>
                                 <a class="btn btn-md-square rounded-circle me-3" href="https://www.facebook.com/profile.php?id=61563098494542"><i class="fab fa-facebook-f"></i></a>
@@ -80,7 +80,7 @@
                                 <a class="btn btn-md-square rounded-circle me-3" href="https://www.instagram.com/jfinserv_consultant/"><i class="fab fa-instagram"></i></a>
                                 <a class="btn btn-md-square rounded-circle me-3" href="https://api.whatsapp.com/send?phone=917385551623&text=Hello,%20I%27m%20looking%20for"><i class="fab fa-whatsapp"></i></a>
                                 <a class="btn btn-md-square rounded-circle me-0" href="tel:917385551623"><i class="fas fa-phone"></i></a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </nav>
@@ -90,11 +90,11 @@
 
         <!-- Modal Search Start -->
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #000;">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">Enquire Now</h5>
-                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title text-gold" id="exampleModalLabel">ENQUIRE NOW</h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body d-flex align-items-center" style="background-color: #000;">
                         <div class="input-group w-100 mx-auto d-flex">
@@ -103,31 +103,17 @@
                             <form action="{{ route('enquiry.store') }}" method="POST">
                                 @csrf
                                 <div class="row g-3">
-                                    <div class="col-lg-12 col-xl-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="name" name="name" value="{{ old('name') }}" placeholder="Your Name" required>
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                        
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control border-0" id="name" name="name" value="{{ old('name') }}" placeholder="Your Name" required>
                                     </div>
-                                    <div class="col-lg-12 col-xl-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control border-0" id="email" name="email" value="{{ old('email') }}" placeholder="Your Email" required>
-                                            <label for="email">Your Email</label>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control border-0" id="contact" name="contact" value="{{ old('contact') }}" placeholder="Phone" required>
                                     </div>
-                                    <div class="col-lg-12 col-xl-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="contact" name="contact" value="{{ old('contact') }}" placeholder="Phone" required>
-                                            <label for="contact">Your Phone</label>
-                                        </div>
-                                        
+                                    <div class="col-md-12">
+                                        <input type="email" class="form-control border-0" id="email" name="email" value="{{ old('email') }}" placeholder="Your Email" required>
                                     </div>
                                     <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control border-0" id="message" name="message" placeholder="Leave a message here" style="height: 120px" required>{{ old('message') }}</textarea>
-                                            <label for="message">Message</label>
-                                        </div>
+                                        <textarea class="form-control border-0" id="message" name="message" placeholder="Leave a message here" style="height: 80px" required>{{ old('message') }}</textarea>
                                     </div>
                                     <div class="col-12 text-center">
                                         <button class="btn btn-light w-50 py-2" type="submit">Submit</button>

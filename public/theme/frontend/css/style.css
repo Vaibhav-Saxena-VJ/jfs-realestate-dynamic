@@ -459,9 +459,14 @@
     .for-mob{
         display: block !important;
     }
+    
+    #bannerCarousel .bg-breadcrumb {
+        height: 250px !important;
+        padding: inherit !important;
+    }
 
-    .only-mob{
-        display: block;
+    .prop-feature {
+        margin-top: -20% !important;
     }
 }
 
@@ -1668,9 +1673,5 @@ ul.detail_features li strong {
 }
 
 .for-mob{
-    display: none;
-}
-
-.only-mob{
     display: none;
 }

@@ -20,8 +20,8 @@
     <div class="container mb-5 pt-3 pb-5">
         <div class="row text-display" style="font-family: 'DM Sans';">
             <p><a href="{{ url('/') }}">Home</a> > <a href="{{ url('properties')}}">Properties</a> > {{ $v->title }}</p>
-            <div class="col-xl-9 wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="about-item-content">
+            <div class="col-xl-9 mb-3 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-item-content for-desk">
                     <!-- <p><small>Posted On: {{ \Carbon\Carbon::parse($v->created_at)->format('M d, Y') }}<span class="float-end">Rera No. : {{$rera}}</span> </small> -->
                     <div class="row">
                         <div class="col-md-12">
@@ -80,6 +80,64 @@
                     </div>
                 </div>
 
+                <div class="about-item-content for-mob">
+                    <!-- <p><small>Posted On: {{ \Carbon\Carbon::parse($v->created_at)->format('M d, Y') }}<span class="float-end">Rera No. : {{$rera}}</span> </small> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="thumbnail_slider">
+                                <!-- Primary Slider Start-->
+                                <div id="primary_sliderM">
+                                    @if($data['additional_images']->isNotEmpty())
+                                        <div class="splide__track">
+                                            <ul class="splide__list">
+                                                @foreach($data['additional_images'] as $image)
+                                                    <li class="splide__slide">
+                                                        <img src="{{ asset($image->image_url) }}" class="img-fluid w-100" alt="Additional Property Image">
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
+                                <!-- Primary Slider End-->
+                                <!-- Thumbnal Slider Start-->
+                                <div id="thumbnail_sliderM">
+                                    @if($data['additional_images']->isNotEmpty())
+                                        <div class="splide__track">
+                                            <ul class="splide__list">
+                                                @foreach($data['additional_images'] as $image)
+                                                    <li class="splide__slide">
+                                                        <img src="{{ asset($image->image_url) }}" class="img-fluid rounded w-100" alt="Additional Property Image">
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
+                                <!-- Thumbnal Slider End-->
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="property_block_wrap style-2">
+                                <div id="clOne" class="panel-collapse collapse show" aria-labelledby="clOne">
+                                    <div class="block-body">
+                                        <div class="row mt-3">
+                                            <div class="col-12">
+                                                <!-- <p><span class="prop-type">{{ $category }}</span></p> -->
+                                                <p class="mb-2 d-flex justify-content-between"><small><i class="far fa-check-circle" style="color: #00c66a; font-size: 14px;"></i> RERA:  {{ $rera }}</small><small><i class="far fa-edit" style="color: #00c66a; font-size: 14px;"></i> {{ \Carbon\Carbon::parse($v->created_at)->format('M d, Y') }}</small></p>
+                                                <p class="mb-0">{{ $builder_name }}</p>
+                                                <p class="h4 mb-1 text-capitalize">{{ $v->title }}</h4>
+                                                <p class="mb-2">{{ $address }}</p>
+                                                <h4 class="prt-price-fix">₹{{ number_format($s_price, 0, '.', ',') }}* Onwards</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="about-item-content bg-white rounded p-4 mt-3 shadow-sm">
                     <div class="row g-4">
                         <div class="col-md-12">
@@ -96,71 +154,72 @@
                                 </div>
                                 <div id="clTwo" class="panel-collapse collapse show" aria-labelledby="clTwo">
                                     <div class="block-body">
-                                        <div class="row g-3">  <!-- Added Bootstrap's gutter spacing -->
+                                        <div class="row row-cols-2 row-cols-md-4 g-3"> <!-- Responsive grid -->
                                             @if(!empty($area))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
-                                                        <strong>Carpet Area:</strong> {{$area}} sqft
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
+                                                        <strong>Carpet Area:</strong> {{$area}} sq m
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($builtup_area))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
-                                                        <strong>Builtup Area:</strong> {{$builtup_area}} sqft
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
+                                                        <strong>Builtup Area:</strong> {{$builtup_area}} sq m
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($floor))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Floor:</strong> {{$floor}}
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($beds))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Bedrooms:</strong> {{$beds}}
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($baths))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Bathrooms:</strong> {{$baths}}
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($balconies))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Balconies:</strong> {{$balconies}}
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($parking))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Parking:</strong> {{$parking}}
                                                     </div>
                                                 </div>
                                             @endif
 
                                             @if(!empty($land_type))
-                                                <div class="col-6 col-md-4">
-                                                    <div class="card p-3 border rounded shadow-sm">
+                                                <div class="col">
+                                                    <div class="card p-3 border rounded shadow-sm text-center">
                                                         <strong>Property Type:</strong> {{$land_type}}
                                                     </div>
                                                 </div>
                                             @endif
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +258,7 @@
                             <div class="property_block_wrap style-2">
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#amenities" data-bs-target="#clOne5" aria-controls="clOne5" href="javascript:void(0);" aria-expanded="true">
-                                        <h4 class="property_block_title">
+                                        <h4 class="property_block_title mb-3">
                                             Amenities of {{ $v->title }}
                                             <span class="float-end">
                                                 <i class="bi bi-chevron-down collapse-icon" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
@@ -230,16 +289,16 @@
                                                 ];
                                             @endphp
 
-                                            <div class="row">
+                                            <div class="row row-cols-3 g-3">
                                                 @foreach($facilitiesArray as $facility)
                                                     @php 
                                                         $facility = trim($facility); // Remove extra spaces
                                                         $iconPath = $icons[$facility] ?? 'theme/frontend/img/icons/default.svg'; // Default icon
                                                     @endphp
-                                                    <div class="col-md-3 col-sm-6 mb-3">
-                                                        <div class="d-flex align-items-center border p-3 rounded">
-                                                            <img src="{{ asset($iconPath) }}" alt="{{ $facility }}" class="me-2" width="40" height="40"> 
-                                                            <span>{{ $facility }}</span>
+                                                    <div class="col-6 col-md-3">
+                                                        <div class="d-flex flex-column align-items-center border rounded pt-3 pb-2">
+                                                            <img src="{{ asset($iconPath) }}" alt="{{ $facility }}" width="50" height="50" class="mb-2">
+                                                            <span class="fw-bold small">{{ $facility }}</span>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -291,7 +350,7 @@
                                     </a>
                                 </div>
                                 <div id="clOne4" class="panel-collapse collapse show" aria-labelledby="clOne4">
-                                    <div class="block-body">
+                                    <div class="block-body for-desk">
                                         @if($nearby_locations && count($nearby_locations) > 0)
                                             <div class="row g-3">  <!-- Bootstrap Grid for Proper Spacing -->
                                                 @foreach($nearby_locations as $location)
@@ -305,6 +364,21 @@
                                                     @endif
                                                 @endforeach
                                             </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="block-body for-mob">
+                                        @if($nearby_locations && count($nearby_locations) > 0)
+                                            <ul style="list-style:none; padding-left: 0;">
+                                                @foreach($nearby_locations as $location)
+                                                    @if(!empty($location))                                                    
+                                                        <li>
+                                                            <i class="fas fa-location"></i>
+                                                            <span>{{ $location }}</span>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
                                         @endif
                                     </div>
                                 </div>
@@ -324,7 +398,7 @@
                                     
                                 </div> -->
                                 <div class="sides-widget-details">
-                                    <h3>Are You Interested!</h3>
+                                    <h4>Are You Interested!</h4>
                                     <!-- <a href="tel:+17817548182"><span><i class="lni-phone-handset"></i> +17817548182</span></a> -->
                                 </div>
                                 <div class="clearfix"></div>
@@ -380,7 +454,7 @@
                                     <input type="number" id="loanAmount" class="form-control" value="2500000">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Interest Rate (%)</label>
+                                    <label class="form-label">Interest (%)</label>
                                     <input type="number" id="interestRate" class="form-control" value="10.5">
                                 </div>
                                 <div class="col-md-6">
@@ -421,34 +495,32 @@
     </div>
     <!-- Modal for Enquiry -->
     <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <form id="enquiryForm">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="enquiryModalLabel">Enter Your Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                <div class="modal-header" style="background-color: #000;">
+                    <h5 class="modal-title text-gold" id="enquiryModalLabel">DOWNLOAD BROCHURE</h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body d-flex align-items-center" style="background-color: #000;">
+                    <form id="enquiryForm">
+                        @csrf
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="contact" name="contact" placeholder="Phone" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <input type="hidden" name="enquiry_type" value="brochure">
+                            <div class="col-12 text-center">
+                                <button class="btn btn-light w-50 py-2" type="submit">Download Now</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contact" class="form-label">Contact</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
-                        </div>
-                        <input type="hidden" name="enquiry_type" value="brochure">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit & Download</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -492,10 +564,46 @@
         pagination: false,
         arrows: false,
         cover: true,
+        loop: true,
     });
 
     // Thumbnails slider.
     var thumbnailSlider = new Splide('#thumbnail_slider', {
+        rewind: true,
+        fixedWidth: 100,
+        fixedHeight: 64,
+        isNavigation: true,
+        gap: 10,
+        focus: 'left',
+        pagination: false,
+        cover: true,
+        loop: true,
+        breakpoints: {
+            '600': {
+                fixedWidth: 66,
+                fixedHeight: 40,
+            }
+        }
+    }).mount();
+
+    // sync the thumbnails slider as a target of primary slider.
+    primarySlider.sync(thumbnailSlider).mount();
+</script>
+
+<script type="text/javascript">
+    // Primary slider.
+    var primarySlider = new Splide('#primary_sliderM', {
+        loop: true,
+        type: 'fade',
+        heightRatio: 0.5,
+        pagination: false,
+        arrows: false,
+        cover: true,
+    });
+
+    // Thumbnails slider.
+    var thumbnailSlider = new Splide('#thumbnail_sliderM', {
+        loop: true,
         rewind: true,
         fixedWidth: 100,
         fixedHeight: 64,
@@ -669,7 +777,7 @@
         }, 400);
     }
 
-    // Auto-show after 4.5 seconds
-    setTimeout(openPopup, 4500);
+    // Auto-show after 10 seconds
+    setTimeout(openPopup, 10000);
 </script>
 @endsection

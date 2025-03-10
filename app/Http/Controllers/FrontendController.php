@@ -271,7 +271,7 @@ class FrontendController extends Controller
                 'properties.parking', 'properties.contact', 'price_range.from_price', 'price_range.to_price', 
                 'property_category.category_name', 'properties.property_details', 
                 'properties.localities', 'properties.city', 'properties.area',
-                'properties.is_featured'
+                'properties.is_featured', 'properties.s_price'
             )
             ->paginate(700);
     

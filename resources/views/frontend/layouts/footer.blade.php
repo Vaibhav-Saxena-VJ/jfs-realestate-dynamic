@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-5 col-md-2">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">Useful Links</h4>
                     <a href="/about"><i class="fas fa-angle-right me-2"></i> About Us</a>
@@ -29,7 +29,7 @@
                     <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact</a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-7 col-md-3">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">Reach Us</h4>
                     <p class="text-white">Office No. 423, Sterling Centre,<br>MG Road, Camp, Pune,<br>Maharashtra 411001.</p>
@@ -40,8 +40,8 @@
             <div class="col-md-3">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">MahaRERA Details</h4>
-                    <img src="https://www.360realtors.com/images/67ca95a39845f.png" class="ms-4 w-50" alt="Rera Details">
-                    <p class="text-white h5 m-0">Rera No. MG554488770</span></a></p>
+                    <img src="https://www.360realtors.com/images/67ca95a39845f.png" class="w-50" alt="Rera Details">
+                    <p class="text-white h5 m-0">MG554488770</span></a></p>
                 </div>
             </div>
         </div>
@@ -52,10 +52,10 @@
     <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row g-4 align-items-center">
-                <div class="col-md-6 mb-md-0">
+                <div class="col-md-9 mb-md-0">
                     <samll><span class="text-body"><a href="#" class="border-bottom text-white">2024 <i class="far fa-copyright text-light me-1"></i>Jfinserv Consultant</a>, All rights reserved | Developed By <a class="border-bottom text-white" href="https://jfstechnologies.com">JFS Technologies</a>.</span></small>
                 </div>
-                <div class="col-md-6 text-md-end text-body">
+                <div class="col-md-3 text-md-end text-body">
                     <small>
                         <a class="text-white" href="/privacy-policy">Privacy Policy</a> | <a class="text-white" href="/terms-and-conditions">Terms & Condition</a>
                     </small>

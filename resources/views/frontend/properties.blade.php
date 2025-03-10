@@ -278,9 +278,11 @@
                         <div class="row">
                             @foreach($localityData['properties'] as $property)
                                 <div class="col-md-6 col-6 col-xs-12">
-                                    <p class="h6 text-primary">{{ $property->builder_name }}</p>
-                                    <img src="{{ $property->image }}" class="img-fluid mb-2" alt="{{ $property->title }}" style="height:125px;">
-                                    <p class="text-muted">{{ $property->title }}</p>
+                                    <a href="{{ url('property-details/'.$property->properties_id) }}" target="_blank">
+                                        <p class="h6 text-primary">{{ $property->builder_name }}</p>
+                                        <img src="{{ $property->image }}" class="img-fluid mb-2" alt="{{ $property->title }}" style="height:125px;">
+                                        <p class="text-muted">{{ $property->title }}</p>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -416,7 +418,7 @@
 </div>
 
 <!-- Featured Properties -->
-<div class="container-fluid blog mt-3" id="featured_properties">
+<div class="container-fluid blog mt-4" id="featured_properties">
     <div class="container">
         <h4 class="display-5 wow fadeInDown text-center mb-0" data-wow-delay="0.1s">Featured Properties</h4>
         <p class="m-0 text-center mb-4">Explore the most exclusive properties</p>
@@ -461,7 +463,7 @@
                                                 </p>
                                                 <hr>
                                                 <p class="mb-0 h5 d-flex justify-content-between align-items-center">
-                                                    <strong class="price-format" data-price="{{ $v->from_price }}">{{ $v->from_price }}</strong>
+                                                    <strong class="price-format" data-price="{{ $v->s_price }}">{{ $v->s_price }}</strong>
                                                     <button class="btn bg-light text-primary btn-md rounded-1 px-3 py-1">
                                                         <i class="fas fa-phone"></i> Contact
                                                     </button>
@@ -489,7 +491,7 @@
 </div>
 
 <!-- All Properties List -->
-<div class="container-fluid blog mb-5" id="old_data">
+<div class="container-fluid blog mt-3 mb-5" id="old_data">
     <div class="container py-5">
         <h4 class="display-5 wow fadeInDown text-center mb-0" data-wow-delay="0.1s">All Properties</h4>
         <p class="m-0 text-center mb-4">Explore prime properties based on your recommendation</p>
@@ -534,7 +536,7 @@
                                                 </p>
                                                 <hr>
                                                 <p class="mb-0 h5 d-flex justify-content-between align-items-center">
-                                                    <strong class="price-format" data-price="{{ $v->from_price }}">{{ $v->from_price }}</strong>
+                                                    <strong class="price-format" data-price="{{ $v->s_price }}">{{ $v->s_price }}</strong>
                                                     <button class="btn bg-light text-primary btn-md rounded-1 px-3 py-1">
                                                         <i class="fas fa-phone"></i> Contact
                                                     </button>

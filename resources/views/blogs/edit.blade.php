@@ -128,6 +128,7 @@ Edit Blog
                 height: 400,
                 menubar: true,
                 branding: false,
+                images_upload_url: '/upload-image', // Backend route to handle image uploads
 
                 // Apply Poppins font in TinyMCE
                 content_style: `

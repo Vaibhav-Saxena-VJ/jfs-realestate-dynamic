@@ -29,6 +29,10 @@
                                 <!-- Primary Slider Start-->
                                 <div id="primary_slider">
                                     @if($data['additional_images']->isNotEmpty())
+                                        <div class="image-count position-absolute top-0 end-0 bg-dark text-white px-2 py-1 rounded m-2 d-flex align-items-center" 
+                                            style="z-index: 10; font-size: 14px; opacity: 0.8;">
+                                            <i class="fas fa-image me-1"></i> {{ $data['additional_images']->count() }}
+                                        </div>
                                         <div class="splide__track">
                                             <ul class="splide__list">
                                                 @foreach($data['additional_images'] as $image)

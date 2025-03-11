@@ -348,14 +348,13 @@
             height: 300,
             menubar: true,
             branding: false,
-            setup: function (editor) {
-                editor.on('change', function () {
-                    tinymce.triggerSave(); // Ensure the form gets updated value
-                });
-            }
+            images_upload_url: '/upload-image', // Backend route to handle image uploads
+            automatic_uploads: true, // Automatically upload images when selected
+            file_picker_types: 'image'
         });
     });
 </script>
+
 <script>   
 $('#addNewProperty').on('submit',function(e){
     e.preventDefault();

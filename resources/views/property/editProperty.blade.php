@@ -174,6 +174,33 @@
                                 <input type="text" name="longitude" class="form-control" value="{{ $data['propertie_details'][0]->longitude ?? '' }}" placeholder="Longitude" required>
                             </div>
                         </div>
+
+                        <!-- Nearby Location 1 -->
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label">Nearby Locations</label>
+                                @if(!empty($v->nearby_locations))  
+                                    @php
+                                        $nearbyLocations = json_decode($v->nearby_locations, true); // Decode JSON to an array
+                                    @endphp
+
+                                    @if(is_array($nearbyLocations) && count($nearbyLocations) > 0)
+                                        <div class="row g-3">  <!-- Bootstrap Grid for Proper Spacing -->
+                                            @foreach($nearbyLocations as $location)
+                                                @if(!empty($location))
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <input type="text" name="nearby[]" class="form-control mb-2" 
+                                                            placeholder="example: Lexicon - 02 km" 
+                                                            value="{{ $location }}">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Email ID</label>
@@ -264,6 +291,7 @@
         height: 400,
         menubar: true,
         branding: false,
+        images_upload_url: '/upload-image', // Backend route to handle image uploads
 
         // Apply Poppins font in TinyMCE
         content_style: `

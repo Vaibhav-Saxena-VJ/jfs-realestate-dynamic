@@ -636,7 +636,7 @@
                     <div class="service-content p-4">
                         <div class="service-content-inner">
                             <a href="#" class="d-inline-block h4 mb-4">Property Management</a>
-                            <p class="mb-4">We simplify construction financing with low rates and an easy online application, offering tailored loans that ensure a smooth and timely process.</p>
+                            <p class="mb-4">We simplify construction financing with low rates and an easy online application, offering tailored loans that ensure a smooth and timely funding process.</p>
                         </div>
                     </div>
                 </div>

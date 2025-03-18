@@ -511,7 +511,7 @@
     border-radius: 10px;
     background: var(--bs-white);
     transition: 0.5s;
-    min-height: 335px;
+    min-height: 360px;
 }
 
 .feature .feature-item:hover {
@@ -655,6 +655,7 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background: var(--bs-light);
+    min-height: 250px;
 }
 
 .service .service-item .service-content .service-content-inner {
@@ -1285,6 +1286,10 @@ ul.detail_features li strong {
     }
 
     h4,.h4{font-size:1.25rem}
+
+    #bannerCarousel .bg-breadcrumb {
+        height: auto;
+    }
 }
 
 @media screen and (min-width:1240px) and (max-width: 1360px) {
@@ -1306,6 +1311,10 @@ ul.detail_features li strong {
     }
 
     h4,.h4{font-size:1.25rem}
+
+    #bannerCarousel .bg-breadcrumb {
+        height: 400px;
+    }
 }
 
 .rt-img {

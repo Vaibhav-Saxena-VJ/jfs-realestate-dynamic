@@ -412,3 +412,20 @@ Route::delete('/banners/{id}', [BannerController::class, 'destroy'])->name('bann
 
 //text-editor
 Route::post('/upload-tinymce-image', [TinyMCEController::class, 'uploadImage'])->name('tinymce.upload');
+
+// Landing Pages
+Route::get('/sukhwani-skylines', function () {
+    return view('frontend.lp.sukhwani-skylines.index');
+});
+
+Route::get('/pharande-l-axis', function () {
+    return view('frontend.lp.pharande-laxis.index');
+});
+
+Route::get('/pharande-puneville', function () {
+    return view('frontend.lp.pharande-puneville.index');
+});
+
+Route::get('/sukhwani-celaeno', function () {
+    return view('frontend.lp.sukhwani-celaeno.index');
+});

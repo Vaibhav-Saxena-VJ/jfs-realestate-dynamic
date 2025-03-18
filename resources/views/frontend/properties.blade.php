@@ -310,8 +310,8 @@
                             "bhk" => "2 & 3 BHK",
                             "size" => "756 SQ. FT.",
                             "price" => "₹89.9L*",
-                            "img" => "prop-1.webp",
-                            "link" => "https://jfsrealty.in/sukhwani-skylines.html",
+                            "img" => "sukhwani-skylines/b1.jpg",
+                            "link" => "/sukhwani-skylines",
                             "category" => "Residential"
                         ],
                         [
@@ -321,8 +321,8 @@
                             "bhk" => "2, 3 & 4 BHK",
                             "size" => "819* SQ. FT.",
                             "price" => "₹97L*",
-                            "img" => "prop-1.webp",
-                            "link" => "https://jfsrealty.in/pharande-l-axis.html",
+                            "img" => "pharande-laxis/b1.jpg",
+                            "link" => "pharande-l-axis",
                             "category" => "Residential"
                         ],
                         [
@@ -332,8 +332,8 @@
                             "bhk" => "2 & 2.5 BHK",
                             "size" => "728* SQ. FT.",
                             "price" => "₹80L*",
-                            "img" => "prop-1.webp",
-                            "link" => "https://jfsrealty.in/pharande-puneville.html",
+                            "img" => "pharande-puneville/b1.jpg",
+                            "link" => "pharande-puneville",
                             "category" => "Residential"
                         ],
                         [
@@ -343,20 +343,9 @@
                             "bhk" => "3 & 4 BHK",
                             "size" => "1325 SQ. FT.",
                             "price" => "₹1.72Cr*",
-                            "img" => "prop-1.webp",
-                            "link" => "https://jfsrealty.in/sukhwani-celaeno.html",
+                            "img" => "sukhwani-celaeno/b1.jpg",
+                            "link" => "sukhwani-celaeno",
                             "category" => "Residential"
-                        ],
-                        [
-                            "name" => "Pharande Felicity",
-                            "developer" => "By Pharande Spaces",
-                            "location" => "Block-B1, FELICITY, Ravet, PCMC",
-                            "bhk" => "Shops & Offices",
-                            "size" => "245* SQ. FT.",
-                            "price" => "₹32L*",
-                            "img" => "prop-1.webp",
-                            "link" => "https://jfsrealty.in/pharande-felicity.html",
-                            "category" => "Commercial"
                         ]
                     ]; 
 
@@ -374,7 +363,7 @@
                                     <a href="{{ $property['link'] }}" target="_blank">
                                         <div class="blog-item shadow-sm rounded">
                                             <div class="blog-img position-relative">
-                                                <img src="{{ asset('theme/frontend/img/' . $property['img']) }}" class="img-fluid rounded-top w-100" alt="">
+                                                <img src="{{ asset('theme/frontend/lp/' . $property['img']) }}" class="img-fluid rounded-top w-100" alt="">
                                                 <div class="blog-categiry">
                                                     <span>{{ $property['category'] }}</span>
                                                 </div>

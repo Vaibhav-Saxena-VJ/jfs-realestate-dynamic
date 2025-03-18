@@ -30,8 +30,7 @@ class PropertyController extends Controller
         return view('property.addProperty',compact('data'));
     }
 
-    public function insertProperty(Request $request)
-    {
+    public function insertProperty(Request $request){
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 
         DB::beginTransaction();
@@ -40,6 +39,9 @@ class PropertyController extends Controller
             // Save the property details
             $p = new Property;
             $p->title = $request->property_title;
+            $p->meta_title = $request->meta_title; 
+            $p->meta_description = $request->meta_description; 
+            $p->meta_keywords = $request->meta_keywords; 
             $p->property_type_id = $request->property_type;
             $p->builder_name = $request->builder_name;
             $p->property_details = $request->property_description;
@@ -48,7 +50,7 @@ class PropertyController extends Controller
             // Handle Amenities
             $locality = DB::table('localities')->where('id', $request->localitie)->value('name');
             $property_status = DB::table('property_status')
-            ->where('id', $request->localitie)
+            ->where('id', $request->property_status)
             ->value('status_name');
 
             $amenities = $request->input('amenities', []); // Default to an empty array if null
@@ -296,12 +298,16 @@ public function allProperties()
     
         return view('property.editProperty', compact('data'));
     }
+    
     public function updatePropertie(Request $request) {
         try {
             // Validate request
             $request->validate([
                 'propertie_id' => 'required|integer|exists:properties,properties_id',
                 'property_title' => 'required|string|max:255',
+                'meta_title' => 'required|string|max:255',
+                'meta_description' => 'required|string|max:255',
+                'meta_keywords' => 'required|string|max:255',
                 'property_type_id' => 'required|integer',
                 'builder_name' => 'nullable|string|max:255',
                 's_price' => 'nullable|numeric',
@@ -316,6 +322,13 @@ public function allProperties()
                 'property_voucher' => 'nullable|mimes:pdf|max:4096',
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
+                'beds' => 'nullable|integer',
+                'baths' => 'nullable|integer',
+                'balconies' => 'nullable|integer',
+                'parking' => 'nullable|integer',
+                'localities' => 'nullable|string',
+                'city' => 'nullable|string',
+                'property_status' => 'nullable|string',
             ]);
     
             $propertie_id = $request->propertie_id;
@@ -350,6 +363,9 @@ public function allProperties()
             // Prepare update data
             $updateProperty = [
                 'title' => $request->property_title,
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'meta_keywords' => $request->meta_keywords,
                 'property_type_id' => $request->property_type_id,
                 'builder_name' => $request->builder_name ?? '',
                 's_price' => $request->s_price ?? 0,
@@ -376,6 +392,7 @@ public function allProperties()
                 'latitude' => $request->latitude ?? 0,
                 'longitude' => $request->longitude ?? 0,
                 'land_type' => $request->land_type ?? '',
+                'property_status' => $request->property_status ?? 'Default Status',
                 'updated_at' => now()
             ];
     
@@ -425,8 +442,7 @@ public function allProperties()
             DB::rollBack();
             return response()->json(['status' => 0, 'msg' => 'Error: ' . $e->getMessage()]);
         }
-    }
-    
+    }    
     
 
     public function deletePropertie(Request $request){

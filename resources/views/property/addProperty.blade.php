@@ -268,6 +268,22 @@
         <!-- Right side -->
         <div class="col-lg-3 bg-light p-4">
             <div class=" mb-4">
+                <div class="form-group">
+                    <label for="meta_title"><strong>Meta Title</strong></label>
+                    <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Enter Meta Title">
+                </div>
+                <div class="form-group">
+                    <label for="meta_description"><strong>Meta Description</strong></label>
+                    <textarea class="form-control" name="meta_description" id="meta_description" placeholder="Enter Meta Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="meta_keywords"><strong>Meta Keywords</strong></label>
+                    <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)"></textarea>
+                </div>
+            </div>
+
+            <div class=" mb-4">
                 <!-- Multiple Property Images Upload -->
                 <h3 class="h6"><strong>Property Images<span class="text-danger">*</span></strong></h3>
                 <input class="form-control" type="file" accept=".jpg,.jpeg,.png,.webp" name="property_images[]" multiple required />
@@ -296,7 +312,7 @@
             </div>
             
             <div class="mb-3">
-                <label class="form-label">Property Status</label>
+                <label class="form-label"><strong>Property Status</strong></label>
                 <select name="property_status" class="form-control" required>
                     <option value="">Select Status</option>
                     @foreach($data['property_status'] as $status)

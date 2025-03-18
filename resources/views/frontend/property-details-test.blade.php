@@ -69,12 +69,13 @@
                                         <div class="row mt-3">
                                             <div class="col-10 col-md-8">
                                                 <!-- <p><span class="prop-type">{{ $category }}</span></p> -->
-                                                <p class="h5 mb-0 text-capitalize"><i class="far fa-building"></i> By {{ $builder_name }} <span class="rera"><i class="far fa-check-circle" style="color: #f74400; font-size: 14px;"></i> RERA:  {{ $rera }}</span></h4>
-                                                <p class="mb-0"><i class="fa-duotone fa-solid fa-location-dot"></i> {{ $address }}</p>
+                                                <h2 class="mb-0 text-capitalize">{{ $v->title }} <span class="rera"><i class="far fa-check-circle" style="color: #f74400; font-size: 14px;"></i> RERA:  {{ $rera }}</span></h2>
+                                                <p class="mb-0">By {{ $builder_name }}</p>
+                                                <p class="mb-0">{{ $address }}</p>
                                             </div>
                                             <div class="col-9 col-md-4">
                                                 <p class="float-end mb-1">Last Updated: {{ \Carbon\Carbon::parse($v->created_at)->format('M d, Y') }}</p>
-                                                <h4 class="prt-price-fix float-end">₹{{ number_format($s_price, 0, '.', ',') }}* Onwards</h4> 
+                                                <p class="h4 prt-price-fix float-end">₹{{ number_format($s_price, 0, '.', ',') }}* Onwards</p>
                                             </div>
                                         </div>
                                     </div>
@@ -148,12 +149,12 @@
                             <div class="property_block_wrap style-2">
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clTwo" aria-controls="clTwo" href="javascript:void(0);" aria-expanded="true">
-                                        <h4 class="property_block_title">
+                                        <h2 class="property_block_title">
                                             Property Details
                                             <span class="float-end">
-                                                <i class="bi bi-chevron-down collapse-icon" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
+                                                <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
                                             </span>
-                                        </h4>
+                                        </h2>
                                     </a>
                                 </div>
                                 <div id="clTwo" class="panel-collapse collapse show" aria-labelledby="clTwo">
@@ -238,12 +239,12 @@
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne2" 
                                     aria-controls="clOne2" href="javascript:void(0);" aria-expanded="true">
-                                        <h4 class="property_block_title">
+                                        <h2 class="property_block_title">
                                             Description
                                             <span class="float-end">
-                                                <i class="bi bi-chevron-down collapse-icon" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
+                                                <i class="bi bi-chevron-down collapse-icon h6" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
                                             </span>
-                                        </h4>
+                                        </h2>
                                     </a>
                                 </div>
                                 <div id="clOne2" class="panel-collapse collapse show" aria-labelledby="clOne2">
@@ -262,12 +263,12 @@
                             <div class="property_block_wrap style-2">
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#amenities" data-bs-target="#clOne5" aria-controls="clOne5" href="javascript:void(0);" aria-expanded="true">
-                                        <h4 class="property_block_title mb-3">
+                                        <h2 class="property_block_title mb-3">
                                             Amenities of {{ $v->title }}
                                             <span class="float-end">
-                                                <i class="bi bi-chevron-down collapse-icon" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
+                                                <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
                                             </span>
-                                        </h4>
+                                        </h2>
                                     </a>
                                 </div>
                                 <div id="clOne5" class="panel-collapse collapse show" aria-labelledby="clOne5">
@@ -324,7 +325,7 @@
                             <div class="property_block_wrap style-2">
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne3" aria-controls="clOne3" href="javascript:void(0);" aria-expanded="true">
-                                        <h4 class="property_block_title">Location</h4>
+                                        <h2 class="property_block_title">Location</h2>
                                     </a>
                                 </div>
                                 <div id="clOne3" class="panel-collapse collapse show">
@@ -344,13 +345,13 @@
                             <div class="property_block_wrap style-2">
                                 <div class="property_block_wrap_header">
                                     <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne4" aria-controls="clOne4" href="javascript:void(0);" aria-expanded="{{ (is_array($nearby_locations) && count($nearby_locations) > 0) ? 'true' : 'false' }}">
-                                        <h4 class="property_block_title">
+                                        <h2 class="property_block_title">
                                             Nearby Locations
                                             <span class="float-end">
-                                                <i class="bi bi-chevron-down collapse-icon" data-bs-toggle="collapse-icon" aria-expanded="{{ (is_array($nearby_locations) && count($nearby_locations) > 0) ? 'true' : 'false' }}"></i>
+                                                <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="{{ (is_array($nearby_locations) && count($nearby_locations) > 0) ? 'true' : 'false' }}"></i>
                                             </span>
                                             <i class="fa-sharp fa-solid fa-badge-check"></i>
-                                        </h4>
+                                        </h2>
                                     </a>
                                 </div>
                                 <div id="clOne4" class="panel-collapse collapse show" aria-labelledby="clOne4">

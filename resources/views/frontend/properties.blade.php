@@ -37,7 +37,7 @@
                     <div class="container-fluid bg-breadcrumb" style="background-image: url('{{ asset('storage/'.$banner->image) }}'); background-size: cover; background-position: center;">
                         <div class="container py-5">
                             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
-                                {{ $banner->title ?? 'Find Your Dream Home' }}
+                                {{ $banner->title ?? '' }}
                             </h4>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
             @endforeach
         </div>
         
-        <!-- Carousel Controls -->
+        <!-- Carousel Controls
         <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -53,7 +53,7 @@
         <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-        </button>
+        </button> -->
     </div>
 
     <!-- Add Carousel Indicators -->

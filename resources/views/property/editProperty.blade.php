@@ -219,6 +219,21 @@
             <!-- Right side -->
             <div class="col-lg-4 pb-3 bg-light">
                 <div class="card-body">
+                    <div class="form-group">
+                        <label for="meta_title">Meta Title</label>
+                        <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Enter Meta Title" value="{{ $v->meta_title ?? '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="meta_description">Meta Description</label>
+                        <textarea class="form-control" name="meta_description" id="meta_description" placeholder="Enter Meta Description" value="{{ $v->meta_description ?? '' }}"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="meta_keywords">Meta Keywords</label>
+                        <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)" value="{{ $v->meta_keywords ?? '' }}"></textarea>
+                    </div>
+                </div>
+                <div class="card-body">
                     <label class="form-label">Rera No.</label>
                     <input type="text" name="rera" class="form-control" placeholder="Rera No." value="{{ $v->rera }}" />
                 </div>

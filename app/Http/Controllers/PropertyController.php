@@ -69,7 +69,7 @@ class PropertyController extends Controller
             $p->parking = $request->parking;
             $p->city = $request->city;
             $p->email = $request->email_id;
-            $p->select_bhk = $request->select_bhk;
+            $p->select_bhk = json_encode($request->select_bhk);
             $p->s_price = $request->s_price;
             $p->rera = $request->rera;
             $p->land_type = $request->land_type;

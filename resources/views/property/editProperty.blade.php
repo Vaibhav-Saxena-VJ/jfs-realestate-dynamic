@@ -225,12 +225,12 @@
                     </div>
                     <div class="form-group">
                         <label for="meta_description">Meta Description</label>
-                        <textarea class="form-control" name="meta_description" id="meta_description" placeholder="Enter Meta Description" value="{{ $v->meta_description ?? '' }}"></textarea>
+                        <textarea class="form-control" name="meta_description" id="meta_description" placeholder="Enter Meta Description">{{ $v->meta_description ?? '' }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="meta_keywords">Meta Keywords</label>
-                        <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)" value="{{ $v->meta_keywords ?? '' }}"></textarea>
+                        <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)">{{ $v->meta_keywords ?? '' }}</textarea>
                     </div>
                 </div>
                 <div class="card-body">

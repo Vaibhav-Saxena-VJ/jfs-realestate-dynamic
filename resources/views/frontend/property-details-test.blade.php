@@ -74,6 +74,7 @@
                                                 <!-- <p><span class="prop-type">{{ $category }}</span></p> -->
                                                 <h2 class="mb-0 text-capitalize">{{ $v->title }} <span class="rera"><i class="far fa-check-circle" style="color: #f74400; font-size: 14px;"></i> RERA:  {{ $rera }}</span></h2>
                                                 <p class="mb-0">By {{ $builder_name }}</p>
+                                                <p class="mb-0">{{ $beds }} BHK</p>
                                                 <p class="mb-0">{{ $address }}</p>
                                             </div>
                                             <div class="col-9 col-md-4">
@@ -166,7 +167,7 @@
                                             @if(!empty($area))
                                                 <div class="col">
                                                     <div class="card p-3 border rounded shadow-sm text-center">
-                                                        <strong>Carpet Area:</strong> {{$area}} sq m
+                                                        <strong>Carpet Area:</strong> {{$area}} sq ft   
                                                     </div>
                                                 </div>
                                             @endif
@@ -174,7 +175,7 @@
                                             @if(!empty($builtup_area))
                                                 <div class="col">
                                                     <div class="card p-3 border rounded shadow-sm text-center">
-                                                        <strong>Builtup Area:</strong> {{$builtup_area}} sq m
+                                                        <strong>Builtup Area:</strong> {{$builtup_area}} sq ft
                                                     </div>
                                                 </div>
                                             @endif

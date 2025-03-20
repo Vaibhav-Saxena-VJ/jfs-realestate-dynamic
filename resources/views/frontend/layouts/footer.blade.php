@@ -6,7 +6,7 @@
                 <div class="footer-item">
                     <a href="{{ url('/') }}" class="pb-3">
                         <!-- <h3 class="text-white"><i class="fab fa-slack me-3"></i> LifeSure</h3> -->
-                        <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" width="35%">
+                        <img src="{{ asset('theme') }}/frontend/img/logo-g1.png" alt="Logo" width="35%">
                     </a>
                     <p class="text-white mb-4">Jfinserv Consultant India Private Limited with many finance partners strives to get you the best loan deals and offers online in just a few clicks.</p>
                     <div class="footer-btn d-flex">

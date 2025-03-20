@@ -279,9 +279,9 @@
                             @foreach($localityData['properties'] as $property)
                                 <div class="col-md-6 col-6 col-xs-12">
                                     <a href="{{ url('property-details/'.$property->properties_id) }}" target="_blank">
-                                        <p class="h6 text-primary">{{ $property->builder_name }}</p>
+                                        <p class="h6 text-primary p-14">{{ $property->builder_name }}</p>
                                         <img src="{{ $property->image }}" class="img-fluid mb-2" alt="{{ $property->title }}" style="height:125px;">
-                                        <p class="text-muted">{{ $property->title }}</p>
+                                        <p class="text-muted p-14">{{ $property->title }}</p>
                                     </a>
                                 </div>
                             @endforeach
@@ -566,7 +566,7 @@
                         <i class="far fa-handshake fa-3x"></i>
                     </div>
                     <h4 class="mb-4">Trusted Company</h4>
-                    <p>Trust is our foundation. With experience and a strong track record, we guide clients confidently through their financial journeys.</p>
+                    <p>Trust is our foundation. With experience, integrity, and a strong track record, we guide clients confidently through their financial journeys with personalized support.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
@@ -575,7 +575,7 @@
                         <i class="fas fa-gift fa-3x"></i>
                     </div>
                     <h4 class="mb-4">Unlimited Rewards</h4>
-                    <p>Earn income for each successful referral. We offer performance bonuses to unlock more earning potential.</p>
+                    <p>Earn a steady income for each successful referral. We offer generous performance bonuses and exclusive incentives to help you unlock even greater earning potential.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
@@ -584,7 +584,7 @@
                         <i class="fa fa-bullseye fa-3x"></i>
                     </div>
                     <h4 class="mb-4">Fast & Easier Process</h4>
-                    <p>A fast & simple loan process provides quick approvals, minimal paperwork, & access to funds within 7 working days.</p>
+                    <p>A fast & simple loan process provides quick approvals, minimal paperwork, competitive rates, and access to funds within 7 days.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
@@ -593,7 +593,7 @@
                         <i class="fas fa-chart-line fa-3x"></i>
                     </div>
                     <h4 class="mb-4">High Range Loan</h4>
-                    <p>A high range loan of up to ₹100Cr. offers substantial funding for major investments or purchases, with flexible terms & competitive rates.</p>
+                    <p>A high-range loan of up to ₹100Cr. offers substantial funding for major investments or purchases with flexible terms, competitive rates, and quick processing.</p>
                 </div>
             </div>
         </div>
@@ -620,7 +620,7 @@
                     <div class="service-content p-4">
                         <div class="service-content-inner">
                             <a href="#" class="d-inline-block h4 mb-4">NRI Friendly</a>
-                            <p class="mb-4">We understand you're seeking a new home, with low rates & a seamless process, we’re here to help you through this important financial decision.</p>
+                            <p class="mb-4">We understand you're seeking a new home, and with low rates, flexible options, quick approvals, and a seamless process, we’re here to help you through this important financial decision.</p>
                         </div>
                     </div>
                 </div>
@@ -636,7 +636,7 @@
                     <div class="service-content p-4">
                         <div class="service-content-inner">
                             <a href="#" class="d-inline-block h4 mb-4">Property Management</a>
-                            <p class="mb-4">We simplify construction financing with low rates and an easy online application, offering tailored loans that ensure a smooth and timely funding process.</p>
+                            <p class="mb-4">We simplify construction financing with low rates and an easy online application, offering tailored loans that ensure a smooth, hassle-free, and timely funding process.</p>
                         </div>
                     </div>
                 </div>

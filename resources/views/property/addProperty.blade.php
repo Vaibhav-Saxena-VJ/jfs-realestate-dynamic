@@ -351,23 +351,49 @@
 @section('script')
 @parent
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js"></script>
 
 <!-- Initialize TinyMCE -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        tinymce.init({
-            selector: '#editor',
-            plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
-            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
-            height: 300,
-            menubar: true,
-            branding: false,
-            images_upload_url: '/upload-image', // Backend route to handle image uploads
-            automatic_uploads: true, // Automatically upload images when selected
-            file_picker_types: 'image'
-        });
+    tinymce.init({
+    selector: '#editor',
+    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
+    toolbar: 'undo redo | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
+    height: 400,
+    menubar: true,
+    branding: false,
+
+    images_upload_url: '/upload-image',
+    automatic_uploads: false,
+    images_reuse_filename: true,
+    paste_data_images: false,
+
+    images_upload_handler: function (blobInfo, success, failure) {
+    let formData = new FormData();
+    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+    // Get CSRF token
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    formData.append('_token', csrfToken);
+
+    fetch('/upload-image', {
+    method: 'POST',
+    body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+    if (result.location) {
+    let cleanUrl = result.location.replace(/^.*?:\/\//, ''); // Removes http:// or https:// if needed
+    success(cleanUrl);
+    } else {
+    failure('Image upload failed');
+    }
+    })
+    .catch(error => {
+    console.error('Upload error:', error);
+    failure('Image upload failed');
+    });
+    }
     });
 </script>
 

@@ -300,35 +300,44 @@
 <!-- Initialize TinyMCE -->
 <script>
     tinymce.init({
-        selector: '#editor',  // Change this if your selector is different
-        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
-        toolbar: 'undo redo | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
-        height: 400,
-        menubar: true,
-        branding: false,
-        images_upload_url: '/upload-image', // Backend route to handle image uploads
+    selector: '#editor',
+    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
+    toolbar: 'undo redo | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
+    height: 400,
+    menubar: true,
+    branding: false,
 
-        // Apply Poppins font in TinyMCE
-        content_style: `
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
-            body { font-family: 'Poppins', sans-serif !important; }
-            p, h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif !important; }
-        `,
+    images_upload_url: '/upload-image',
+    automatic_uploads: false,
+    images_reuse_filename: true,
+    paste_data_images: false,
 
-        font_formats: 
-            "Poppins=Poppins,sans-serif; " +
-            "Arial=arial,helvetica,sans-serif; " +
-            "Courier New=courier new,courier,monospace; " +
-            "Georgia=georgia,palatino,serif; " +
-            "Times New Roman=times new roman,times,serif; " +
-            "Verdana=verdana,geneva,sans-serif; " +
-            "Comic Sans MS=comic sans ms,sans-serif; ",
+    images_upload_handler: function (blobInfo, success, failure) {
+    let formData = new FormData();
+    formData.append('file', blobInfo.blob(), blobInfo.filename());
 
-        setup: function (editor) {
-            editor.on('init', function () {
-                editor.getBody().style.fontFamily = "Poppins, sans-serif"; // Ensure font applies
-            });
-        }
+    // Get CSRF token
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    formData.append('_token', csrfToken);
+
+    fetch('/upload-image', {
+    method: 'POST',
+    body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+    if (result.location) {
+    let cleanUrl = result.location.replace(/^.*?:\/\//, ''); // Removes http:// or https:// if needed
+    success(cleanUrl);
+    } else {
+    failure('Image upload failed');
+    }
+    })
+    .catch(error => {
+    console.error('Upload error:', error);
+    failure('Image upload failed');
+    });
+    }
     });
 </script>
 

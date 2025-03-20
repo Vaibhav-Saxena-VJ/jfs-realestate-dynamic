@@ -246,7 +246,7 @@
                                         <h2 class="property_block_title">
                                             Description
                                             <span class="float-end">
-                                                <i class="bi bi-chevron-down collapse-icon h6" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
+                                                <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
                                             </span>
                                         </h2>
                                     </a>

@@ -657,7 +657,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/Loan_Against_Property.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/loan-assist.jpg" class="img-fluid rounded-top w-100" alt="">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-house-laptop fa-2x"></i>
                         </div> -->
@@ -690,7 +690,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/Loan_Against_Property.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/visits.jpg" class="img-fluid rounded-top w-100" alt="">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-house-laptop fa-2x"></i>
                         </div> -->

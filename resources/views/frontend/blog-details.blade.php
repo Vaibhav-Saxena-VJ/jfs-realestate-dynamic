@@ -8,6 +8,9 @@
 <div class="container-fluid about">
     <div class="container mb-5 pt-3 pb-5">
         <div class="row text-display" style="font-family: 'DM Sans';">
+            <p><a href="{{ asset('') }}" class="navbar-brand p-0">
+                <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" width="80px">
+            </a></p>
             <p><a href="{{ url('/') }}">Home</a> > <a href="#">Blogs</a> > Blog Title</p>
             <div class="col-xl-9 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-item-content">

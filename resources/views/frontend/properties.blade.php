@@ -8,22 +8,15 @@
 
 
 @section('content')
-<!-- Header Start -->
-<!-- <div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Find Your Dream Home</h4>
-        <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item active text-primary">Properties</li>
-        </ol>    
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 custom-nav">
+            <a href="{{ asset('') }}">
+                <img src="{{ asset('theme') }}/frontend/img/logo-g1.png" alt="Logo" width="90px">
+            </a>
+        </div>
     </div>
-</div> -->
-
-<!-- <div class="container-fluid bg-breadcrumb" style="background-image: url(../theme/frontend/img/prop-bnr.jpg);">
-    <div class="container py-5">
-        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Find Your Dream Home</h4>
-    </div>
-</div> -->
+</div>
 
 @php
     $banners = App\Models\Banner::latest()->get(); // Fetch latest 5 banners
@@ -783,34 +776,61 @@
 
         <div class="row g-4 justify-content-center">
             @if(isset($data['blogs']) && $data['blogs']->count() > 0)
-                @foreach ($data['blogs'] as $blog)
-                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{{ asset('storage/' . $blog->image) }}" class="img-fluid blogs-image" alt="{{ $blog->title }}">
-                                <div class="blog-categiry bg-dark py-2 px-4">
-                                    <span>{{ $blog->category_name }}</span>
-                                </div>
-                            </div>
+                <div id="BlogCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php
+                            $isMobile = isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/mobile|android|touch|webos|iphone|ipad/i', strtolower($_SERVER['HTTP_USER_AGENT']));
+                            $chunkSize = $isMobile ? 1 : 4; // 1 blog per slide on mobile, 3 per slide on desktop
+                            $blogChunks = $data['blogs']->chunk($chunkSize);
+                            $first = true;
+                        ?>
 
-                            <div class="blog-content p-4">
-                                <div class="blog-comment d-flex justify-content-between mb-3">
-                                    <div class="small">
-                                        <span class="fa fa-calendar text-primary"></span> 
-                                        {{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}
-                                    </div>
+                        @foreach($blogChunks as $blogGroup)
+                            <div class="carousel-item {{ $first ? 'active' : '' }}">
+                                <div class="row g-4 d-flex justify-content-center">
+                                    @foreach($blogGroup as $blog)
+                                        <div class="col-12 col-md-3">
+                                            <div class="blog-item">
+                                                <div class="blog-img">
+                                                    <img src="{{ asset('storage/' . $blog->image) }}" class="img-fluid blogs-image" alt="{{ $blog->title }}">
+                                                    <div class="blog-categiry bg-dark py-2 px-4">
+                                                        <span>{{ $blog->category_name }}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="blog-content p-4">
+                                                    <div class="blog-comment d-flex justify-content-between mb-3">
+                                                        <div class="small">
+                                                            <span class="fa fa-calendar text-primary"></span> 
+                                                            {{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}
+                                                        </div>
+                                                    </div>
+                                                    <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="h5 d-inline-block">
+                                                        {{ Str::limit($blog->title, 40) }}
+                                                    </a>
+                                                    <p class="mb-3">{!! Str::limit(strip_tags($blog->description), 70) !!}</p>
+                                                    <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="btn p-0">
+                                                        Read More <i class="fa fa-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="h5 d-inline-block">
-                                    {{ Str::limit($blog->title, 40) }}
-                                </a>
-                                <p class="mb-3">{!! Str::limit(strip_tags($blog->description), 70) !!}</p>
-                                <a href="{{ route('blogs.showById', ['id' => $blog->id]) }}" class="btn p-0">
-                                    Read More <i class="fa fa-arrow-right"></i>
-                                </a>
                             </div>
-                        </div>
+                            <?php $first = false; ?>
+                        @endforeach
                     </div>
-                @endforeach
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#BlogCarousel" data-bs-slide="prev">
+                        <i class="fas fa-chevron-left text-dark fs-4"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#BlogCarousel" data-bs-slide="next">
+                        <i class="fas fa-chevron-right text-dark fs-4"></i>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             @else
                 <p class="text-center">No blog posts available.</p>
             @endif

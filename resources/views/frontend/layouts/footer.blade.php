@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row g-4 align-items-center">
                 <div class="col-md-9 mb-md-0">
-                    <samll><span class="text-body"><a href="#" class="border-bottom text-white">2024 <i class="far fa-copyright text-light me-1"></i>Jfinserv Consultant</a>, All rights reserved | Developed By <a class="border-bottom text-white" href="https://jfstechnologies.com">JFS Technologies</a>.</span></small>
+                    <samll><span class="text-body"><a href="#" class="border-bottom text-white">2025 <i class="far fa-copyright text-light me-1"></i>JFS Realty</a>, All rights reserved | Developed By <a class="border-bottom text-white" href="https://jfstechnologies.com">JFS Technologies</a>.</span></small>
                 </div>
                 <div class="col-md-3 text-md-end text-body">
                     <small>

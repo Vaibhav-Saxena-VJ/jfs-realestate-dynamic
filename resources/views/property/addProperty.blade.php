@@ -76,15 +76,15 @@
 
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Carpet area</label><span class="text-danger">*</span>
-                            <input type="text" name="area" class="form-control" placeholder="Carpet Area" required />
+                            <label class="form-label">Carpet area</label>
+                            <input type="text" name="area" class="form-control" placeholder="Carpet Area"  />
                         </div>
                     </div>
 
                     <div class="col-lg-3"> 
                         <div class="mb-3">
-                            <label class="form-label">Built-up Area</label><span class="text-danger">*</span>
-                            <input type="text" name="builtup_area" class="form-control" placeholder="Built-up Area" required />
+                            <label class="form-label">Built-up Area</label>
+                            <input type="text" name="builtup_area" class="form-control" placeholder="Built-up Area" />
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@
 
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Bedrooms</label><span class="text-danger">*</span>
+                            <label class="form-label">Bedrooms</label>
                             <select class="form-control" name="beds">
                                 <option>Select beds</option>
                                 <option value="No">0</option>
@@ -126,7 +126,7 @@
 
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Bathrooms</label><span class="text-danger">*</span>
+                            <label class="form-label">Bathrooms</label>
                             <select class="form-control" name="baths">
                                 <option>Select baths</option>
                                 <option value="No">0</option>
@@ -140,7 +140,7 @@
                     
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Balconies</label><span class="text-danger">*</span>
+                            <label class="form-label">Balconies</label>
                             <select class="form-control" name="balconies">
                                 <option>Select balconies</option>
                                 <option value="No">0</option>
@@ -154,7 +154,7 @@
 
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Parking</label><span class="text-danger">*</span>
+                            <label class="form-label">Parking</label>
                             <select class="form-control" name="parking">
                                 <option>Select parking</option>
                                 <option value="No">0</option>
@@ -203,8 +203,8 @@
                     <!-- Latitude -->
                     <div class="col-lg-6">
                         <div class="mb-3">
-                            <label class="form-label">Latitude</label><span class="text-danger">*</span>
-                            <input type="text" name="latitude" class="form-control" placeholder="Ex: 1.462260" required>
+                            <label class="form-label">Latitude</label>
+                            <input type="text" name="latitude" class="form-control" placeholder="Ex: 1.462260" >
                             <small><a class="form-hint" href="https://www.latlong.net/" target="_blank" rel="nofollow"> Go here to get Latitude from address.</a></small>
                         </div>
                     </div>
@@ -212,8 +212,8 @@
                     <!-- Longitude -->
                     <div class="col-lg-6">
                         <div class="mb-3">
-                            <label class="form-label">Longitude</label><span class="text-danger">*</span>
-                            <input type="text" name="longitude" class="form-control" placeholder="Ex: 1.462260" required>
+                            <label class="form-label">Longitude</label>
+                            <input type="text" name="longitude" class="form-control" placeholder="Ex: 1.462260">
                             <small><a class="form-hint" href="https://www.latlong.net/" target="_blank" rel="nofollow"> Go here to get Longitude from address.</a></small>
                         </div>
                     </div>

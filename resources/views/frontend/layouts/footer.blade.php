@@ -25,7 +25,7 @@
                     <a href="/referral-program"><i class="fas fa-angle-right me-2"></i> Referrals</a>
                     <a href="/services"><i class="fas fa-angle-right me-2"></i> Services</a>
                     <!-- <a href="/login"><i class="fas fa-angle-right me-2"></i> Track Loan</a> -->
-                    <a href="#"><i class="fas fa-angle-right me-2"></i> Blogs</a>
+                    <a href="https://jfsrealty.in/blogs/" target="_blank"><i class="fas fa-angle-right me-2"></i> Blogs</a>
                     <a href="/contact"><i class="fas fa-angle-right me-2"></i> Contact</a>
                 </div>
             </div>

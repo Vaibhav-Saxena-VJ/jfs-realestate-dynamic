@@ -247,7 +247,12 @@ class FrontendController extends Controller
         ->where('properties_id', $property_id)
         ->get();
 
-        return view('frontend.property-details-test',compact('data'));
+        return view('frontend.property-details-test',compact('data'))
+        ->with([
+            'meta_title' => $propertyDetails[0]->meta_title ?? 'Default Property Title',
+            'meta_description' => $propertyDetails[0]->meta_description ?? 'Default Property Description',
+            'meta_keywords' => $propertyDetails[0]->meta_keywords ?? 'Default Keywords'
+        ]);;
     }
     
     // Loan Application

@@ -403,10 +403,7 @@ public function allProperties()
             DB::enableQueryLog();
     
             // Perform update
-            $affectedRows = DB::table('properties')->where('properties_id', $propertie_id)->update([
-                'property_details' => $request->property_description, // Ensure data is sent
-                'updated_at' => now()
-            ]);
+            $affectedRows = DB::table('properties')->where('properties_id', $propertie_id)->update($updateProperty);
             
             if ($affectedRows === 0) {
                 return response()->json(['status' => 0, 'msg' => 'No changes detected!']);

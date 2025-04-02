@@ -1,7 +1,7 @@
 @extends('frontend.layouts.header')
-@section('title', "Properties Details - Jfinserv")
-@section('description', "")
-@section('keywords', "")
+@section('title', $meta_title)
+@section('description', $meta_description)
+@section('keywords', $meta_keywords)
 
 @section('link', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/css/splide.min.css")
 @section('scripts', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/js/splide.min.js")

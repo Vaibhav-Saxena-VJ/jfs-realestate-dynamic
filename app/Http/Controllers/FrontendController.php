@@ -355,7 +355,7 @@ class FrontendController extends Controller
                     $properties = DB::table('properties')
                         ->where('localities', 'LIKE', "%{$locality->name}%")
                         ->where('is_active', 1)
-                        ->select('properties_id', 'title', 'builder_name') // Remove 'image' from selection
+                        ->select('properties_id', 'title', 'builder_name', 'slug') // Remove 'image' from selection
                         ->limit(2)
                         ->get();
 

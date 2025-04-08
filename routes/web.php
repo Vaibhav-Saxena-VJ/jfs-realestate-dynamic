@@ -420,7 +420,7 @@ Route::get('/sukhwani-skylines', function () {
 });
 
 Route::get('/pharande-l-axis', function () {
-    return Redirect::to('/pharande-Laxis-moshi-PCMC', 301);
+    return Redirect::to('/pharande-laxis-moshi-PCMC', 301);
 });
 
 Route::get('/pharande-puneville', function () {
@@ -448,6 +448,6 @@ Route::get('/sukhwani-celeno-pimple-saudagar', function () {
     return view('frontend.lp.sukhwani-celaeno.index');
 });
 
-Route::get('/pharande-Laxis-moshi-PCMC', function () {
+Route::get('/pharande-laxis-moshi-PCMC', function () {
     return view('frontend.lp.pharande-laxis.index');
 });

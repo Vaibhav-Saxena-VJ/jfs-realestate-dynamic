@@ -22,7 +22,7 @@
             <p><a href="{{ asset('') }}" class="navbar-brand p-0">
                 <img src="{{ asset('theme') }}/frontend/img/logo-g.png" alt="Logo" width="80px">
             </a></p>
-            <p><a href="{{ url('/') }}">Home</a> > <a href="{{ url('properties')}}">Properties</a> > {{ $v->title }}</p>
+            <p><a href="{{ url('/') }}">Home</a> > {{ $v->title }}</p>
             <div class="col-xl-9 mb-3 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-item-content for-desk">
                     <!-- <p><small>Posted On: {{ \Carbon\Carbon::parse($v->created_at)->format('M d, Y') }}<span class="float-end">Rera No. : {{$rera}}</span> </small> -->

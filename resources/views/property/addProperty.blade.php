@@ -269,6 +269,10 @@
         <div class="col-lg-3 bg-light p-4">
             <div class=" mb-4">
                 <div class="form-group">
+                    <label for="slug">Slug (URL)</label>
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter Slug" required maxlength="100">
+                </div>
+                <div class="form-group">
                     <label for="meta_title"><strong>Meta Title</strong></label>
                     <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Enter Meta Title">
                 </div>

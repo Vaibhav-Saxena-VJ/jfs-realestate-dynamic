@@ -1,7 +1,7 @@
 @extends('frontend.layouts.header')
-@section('title', $meta_title)
-@section('description', $meta_description)
-@section('keywords', $meta_keywords)
+@section('title', "Properties Details - Jfinserv")
+@section('description', "")
+@section('keywords', "")
 
 @section('link', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/css/splide.min.css")
 @section('scripts', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/js/splide.min.js")
@@ -486,6 +486,10 @@
                                 <p class="h6 m-0">Total Payment<br>(Principal + Interest)</p>
                                 <p class="fw-bold m-0">₹ <span id="totalPayment">0</span></p>
                             </div>
+
+                            <p class="text-center mb-0 pt-3">
+                                <a href="https://jfinserv.com/applyNow" target="_blank" class="btn btn-primary btn-md rounded full-width"> Apply Now</a>
+                            </p>
                         </div>
                     </div>
                 </div>

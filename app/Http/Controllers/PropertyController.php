@@ -330,6 +330,7 @@ public function allProperties()
                 'localities' => 'nullable|string',
                 'city' => 'nullable|string',
                 'property_status' => 'nullable|string',
+                'slug' => 'required|string|max:255'
             ]);
     
             $propertie_id = $request->propertie_id;
@@ -379,6 +380,7 @@ public function allProperties()
                 'creator_id' => $request->creator_id ?? 0,
                 'image' => $property_image_name,
                 'boucher' => $boucher_name,
+                'slug' => $request->slug,
                 'facilities' => $request->amenities ?? '',
                 'area' => $request->area ?? 0,
                 'builtup_area' => $request->builtup_area ?? 0,

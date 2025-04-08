@@ -25,6 +25,7 @@ class PropertyController extends Controller
     {
         $data['range'] = DB::table('price_range')->get();
         $data['category'] = DB::table('property_category')->get();
+        $data['subcategory'] = DB::table('property_subcategory')->get(); 
         $data['localities'] = DB::table('localities')->get();
         $data['property_status'] = DB::table('property_status')->get();
         return view('property.addProperty',compact('data'));
@@ -46,7 +47,7 @@ class PropertyController extends Controller
             $p->builder_name = $request->builder_name;
             $p->property_details = $request->property_description;
             $p->address = $request->property_address;
-
+            $p->property_subcategory_id = $request->property_subcategory_id;
             // Handle Amenities
             $locality = DB::table('localities')->where('id', $request->localitie)->value('name');
             $property_status = DB::table('property_status')

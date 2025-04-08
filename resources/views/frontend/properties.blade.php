@@ -271,7 +271,7 @@
                         <div class="row">
                             @foreach($localityData['properties'] as $property)
                                 <div class="col-md-6 col-6 col-xs-12">
-                                    <a href="{{ url('property-details/'.$property->properties_id) }}" target="_blank">
+                                    <a href="/{{ $property->slug }}" target="_blank">
                                         <p class="h6 text-primary p-14">{{ $property->builder_name }}</p>
                                         <img src="{{ $property->image }}" class="img-fluid mb-2" alt="{{ $property->title }}" style="height:125px;">
                                         <p class="text-muted p-14">{{ $property->title }}</p>
@@ -315,7 +315,7 @@
                             "size" => "819* SQ. FT.",
                             "price" => "₹97L*",
                             "img" => "pharande-laxis/b1.jpg",
-                            "link" => "pharande-l-axis",
+                            "link" => "/pharande-l-axis",
                             "category" => "Residential"
                         ],
                         [
@@ -326,7 +326,7 @@
                             "size" => "728* SQ. FT.",
                             "price" => "₹80L*",
                             "img" => "pharande-puneville/b1.jpg",
-                            "link" => "pharande-puneville",
+                            "link" => "/pharande-puneville",
                             "category" => "Residential"
                         ],
                         [
@@ -337,7 +337,7 @@
                             "size" => "1325 SQ. FT.",
                             "price" => "₹1.72Cr*",
                             "img" => "sukhwani-celaeno/b1.jpg",
-                            "link" => "sukhwani-celaeno",
+                            "link" => "/sukhwani-celaeno",
                             "category" => "Residential"
                         ]
                     ]; 
@@ -428,7 +428,7 @@
                                     $area = $v->area;
                                 ?>
                                 <div class="col-12 col-md-3"> <!-- 1 card per slide on mobile, 4 per slide on desktop -->
-                                    <a href="{{ url('property-details/'.$v->properties_id) }}" target="_blank">
+                                    <a href="/{{ $v->slug }}" target="_blank">
                                         <div class="blog-item">
                                             <div class="blog-img">
                                                 <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="" style="height: 175px">

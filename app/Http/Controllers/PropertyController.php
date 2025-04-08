@@ -40,6 +40,7 @@ class PropertyController extends Controller
             // Save the property details
             $p = new Property;
             $p->title = $request->property_title;
+            $p->slug = $request->slug; 
             $p->meta_title = $request->meta_title; 
             $p->meta_description = $request->meta_description; 
             $p->meta_keywords = $request->meta_keywords; 
@@ -47,7 +48,6 @@ class PropertyController extends Controller
             $p->builder_name = $request->builder_name;
             $p->property_details = $request->property_description;
             $p->address = $request->property_address;
-            $p->property_subcategory_id = $request->property_subcategory_id;
             // Handle Amenities
             $locality = DB::table('localities')->where('id', $request->localitie)->value('name');
             $property_status = DB::table('property_status')
@@ -257,6 +257,7 @@ public function allProperties()
     
         return view('property.propertyDetails', compact('data'));
     }
+
     public function activate(Request $request){
         $updatePropertie = array(
             'is_active'=> 1

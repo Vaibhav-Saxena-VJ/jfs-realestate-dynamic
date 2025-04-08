@@ -501,7 +501,7 @@
                                     $area = $v->area;
                                 ?>
                                 <div class="col-12 col-md-3"> <!-- 1 card per slide on mobile, 4 per slide on desktop -->
-                                <a href="/{{ $v->slug }}" target="_blank">
+                                 <a href="/property/{{ $v->slug }}/{{ $v->properties_id }}" target="_blank">
                                         <div class="blog-item">
                                             <div class="blog-img">
                                                 <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="" style="height: 175px">

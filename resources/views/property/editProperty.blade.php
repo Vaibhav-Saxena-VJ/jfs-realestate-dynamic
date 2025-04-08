@@ -219,6 +219,10 @@
             <!-- Right side -->
             <div class="col-lg-4 pb-3 bg-light">
                 <div class="card-body">
+                <div class="form-group">
+    <label for="slug">Slug (URL)</label>
+    <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug', $property->slug ?? '') }}" required>
+</div>
                     <div class="form-group">
                         <label for="meta_title">Meta Title</label>
                         <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Enter Meta Title" value="{{ $v->meta_title ?? '' }}">

@@ -240,20 +240,33 @@ class FrontendController extends Controller
         return view('frontend.termcond');
     }
 
-    public function PropDetailsView($property_id){
-        $data['propertie_details'] = DB::select('select * from properties as p, price_range as pr, property_category as pc where 
-        p.price_range_id = pr.range_id and pc.pid = p.property_type_id and p.properties_id =' . $property_id);
-        $data['additional_images'] = DB::table('property_images')
-        ->where('properties_id', $property_id)
+    public function PropDetailsView($slug)
+{
+    $propertyDetails = DB::table('properties')->where('slug', $slug)->first();
+
+    if (!$propertyDetails) {
+        abort(404);
+    }
+
+    $data['propertie_details'] = DB::select(
+        'SELECT * FROM properties AS p, price_range AS pr, property_category AS pc 
+         WHERE p.price_range_id = pr.range_id 
+         AND pc.pid = p.property_type_id 
+         AND p.slug = ?', [$slug]
+    );
+
+    $data['additional_images'] = DB::table('property_images')
+        ->where('properties_id', $propertyDetails->properties_id)
         ->get();
 
-        return view('frontend.property-details-test',compact('data'))
+    return view('frontend.property-details-test', compact('data'))
         ->with([
-            'meta_title' => $propertyDetails[0]->meta_title ?? 'Default Property Title',
-            'meta_description' => $propertyDetails[0]->meta_description ?? 'Default Property Description',
-            'meta_keywords' => $propertyDetails[0]->meta_keywords ?? 'Default Keywords'
-        ]);;
-    }
+            'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
+            'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
+            'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords'
+        ]);
+}
+
     
     // Loan Application
     public function ProfessionalDetailView(){
@@ -270,7 +283,7 @@ class FrontendController extends Controller
             ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
             ->where('properties.is_active', 1)
             ->select(
-                'properties.properties_id', 'properties.title', 'properties.property_type_id', 
+                'properties.properties_id', 'properties.slug', 'properties.title', 'properties.property_type_id', 
                 'properties.builder_name', 'properties.select_bhk', 'properties.address', 
                 'properties.facilities', 'properties.beds', 'properties.baths', 'properties.balconies', 
                 'properties.parking', 'properties.contact', 'price_range.from_price', 'price_range.to_price', 
@@ -305,7 +318,7 @@ class FrontendController extends Controller
             ->where('properties.is_featured', 1)
             ->where('properties.is_active', 1)
             ->select(
-                'properties.properties_id', 'properties.title', 'properties.address', 'properties.builder_name',
+                'properties.properties_id', 'properties.slug', 'properties.title', 'properties.address', 'properties.builder_name',
                 'properties.s_price', 'properties.is_featured', 'properties.localities', 'properties.city',
                 'property_category.category_name', 'price_range.from_price', 'properties.select_bhk', 'properties.area','price_range.from_price', 'price_range.to_price'
             )

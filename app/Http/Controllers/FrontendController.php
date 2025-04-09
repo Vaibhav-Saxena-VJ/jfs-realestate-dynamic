@@ -240,33 +240,44 @@ class FrontendController extends Controller
         return view('frontend.termcond');
     }
 
-    public function PropDetailsView($slug)
-{
-    $propertyDetails = DB::table('properties')->where('slug', $slug)->first();
+    public function PropDetailsView($slugAndId)
+    {
+        // Separate the slug and ID from the URL segment
+        $parts = explode('-', $slugAndId);
+        $id = array_pop($parts); // Extract the ID (last part)
+        $slug = implode('-', $parts); // Reconstruct the slug
 
-    if (!$propertyDetails) {
-        abort(404);
+        // Fetch property based on both ID and slug (optional but safer)
+        $propertyDetails = DB::table('properties')
+            ->where('properties_id', $id)
+            ->where('slug', $slug)
+            ->first();
+
+        if (!$propertyDetails) {
+            abort(404);
+        }
+
+        // Get full property details
+        $data['propertie_details'] = DB::select(
+            'SELECT * FROM properties AS p, price_range AS pr, property_category AS pc 
+            WHERE p.price_range_id = pr.range_id 
+            AND pc.pid = p.property_type_id 
+            AND p.properties_id = ?', [$id]
+        );
+
+        // Get additional images
+        $data['additional_images'] = DB::table('property_images')
+            ->where('properties_id', $propertyDetails->properties_id)
+            ->get();
+
+        // Return view with meta data
+        return view('frontend.property-details-test', compact('data'))
+            ->with([
+                'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
+                'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
+                'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords'
+            ]);
     }
-
-    $data['propertie_details'] = DB::select(
-        'SELECT * FROM properties AS p, price_range AS pr, property_category AS pc 
-         WHERE p.price_range_id = pr.range_id 
-         AND pc.pid = p.property_type_id 
-         AND p.slug = ?', [$slug]
-    );
-
-    $data['additional_images'] = DB::table('property_images')
-        ->where('properties_id', $propertyDetails->properties_id)
-        ->get();
-
-    return view('frontend.property-details-test', compact('data'))
-        ->with([
-            'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
-            'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
-            'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords'
-        ]);
-}
-
     
     // Loan Application
     public function ProfessionalDetailView(){

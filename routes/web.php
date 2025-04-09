@@ -75,7 +75,10 @@ Route::get('terms-and-conditions', [FrontendController::class, 'TermCondView']);
 Route::get('myprofile', [FrontendController::class, 'ProfileView']);
 Route::get('emi-calculator', [FrontendController::class, 'CalculatorView']);
 Route::get('/', [FrontendController::class, 'properties'])->name('properties');
-Route::get('/property/{slug}/{id}', [FrontendController::class, 'PropDetailsView'])->name('property.details');
+
+// Route::get('/property/{slug}/{id}', [FrontendController::class, 'PropDetailsView'])->name('property.details');
+Route::get('/{slugAndId}', [FrontendController::class, 'PropDetailsView'])->name('property.details');
+
 Route::get('referral-program', [FrontendController::class, 'ReferralsView']);
 Route::get('home-loan', [FrontendController::class, 'HomeLoanView']);
 Route::get('loan-against-property', [FrontendController::class, 'LAPLoanView']);

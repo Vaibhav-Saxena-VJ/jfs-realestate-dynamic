@@ -417,40 +417,19 @@ Route::delete('/banners/{id}', [BannerController::class, 'destroy'])->name('bann
 //text-editor
 Route::post('/upload-tinymce-image', [TinyMCEController::class, 'uploadImage'])->name('tinymce.upload');
 
-// Landing Pages -> Redirects from old short slugs to SEO-friendly URLs
+// Landing Pages
 Route::get('/sukhwani-skylines', function () {
-    return Redirect::to('/sukhwani-skylines-wakad-pune', 301);
-});
-
-Route::get('/pharande-l-axis', function () {
-    return Redirect::to('/pharande-laxis-moshi-PCMC', 301);
-});
-
-Route::get('/pharande-puneville', function () {
-    return Redirect::to('/pharande-puneville-punawale-pcmc', 301);
-});
-
-Route::get('/sukhwani-celaeno', function () {
-    return Redirect::to('/sukhwani-celeno-pimple-saudagar', 301);
-});
-
-// Final SEO-friendly landing page routes
-Route::get('/pharande-felicity-ravet-pcmc', function () {
-    return view('frontend.lp.pharande-felicity.index');
-});
-
-Route::get('/sukhwani-skylines-wakad-pune', function () {
     return view('frontend.lp.sukhwani-skylines.index');
 });
 
-Route::get('/pharande-puneville-punawale-pcmc', function () {
+Route::get('/pharande-l-axis', function () {
+    return view('frontend.lp.pharande-laxis.index');
+});
+
+Route::get('/pharande-puneville', function () {
     return view('frontend.lp.pharande-puneville.index');
 });
 
-Route::get('/sukhwani-celeno-pimple-saudagar', function () {
+Route::get('/sukhwani-celaeno', function () {
     return view('frontend.lp.sukhwani-celaeno.index');
-});
-
-Route::get('/pharande-laxis-moshi-PCMC', function () {
-    return view('frontend.lp.pharande-laxis.index');
 });

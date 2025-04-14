@@ -44,6 +44,7 @@ class PropertyController extends Controller
             $p->meta_title = $request->meta_title; 
             $p->meta_description = $request->meta_description; 
             $p->meta_keywords = $request->meta_keywords; 
+            $p->short_description = $request->short_description;
             $p->property_type_id = $request->property_type;
             $p->builder_name = $request->builder_name;
             $p->property_details = $request->property_description;
@@ -148,6 +149,7 @@ public function allProperties()
             'properties.properties_id',
             'properties.title',
             'properties.property_type_id',
+            'properties.short_description',
             'properties.builder_name',
             'properties.select_bhk',
             'properties.land_type',
@@ -199,6 +201,7 @@ public function allProperties()
             'properties.parking',
             'properties.builtup_area',
             'properties.contact',
+            'properties.short_description',
             'price_range.from_price',
             'price_range.to_price',
             'property_category.category_name', // Fix: Ensure category_name is included
@@ -310,6 +313,7 @@ public function allProperties()
                 'meta_title' => 'required|string|max:255',
                 'meta_description' => 'required|string|max:255',
                 'meta_keywords' => 'required|string|max:255',
+                'short_description' => 'required|string|max:255',
                 'property_type_id' => 'required|integer',
                 'builder_name' => 'nullable|string|max:255',
                 's_price' => 'nullable|numeric',
@@ -369,6 +373,7 @@ public function allProperties()
                 'meta_title' => $request->meta_title,
                 'meta_description' => $request->meta_description,
                 'meta_keywords' => $request->meta_keywords,
+                'short_description' => $request->short_description,
                 'property_type_id' => $request->property_type_id,
                 'builder_name' => $request->builder_name ?? '',
                 's_price' => $request->s_price ?? 0,

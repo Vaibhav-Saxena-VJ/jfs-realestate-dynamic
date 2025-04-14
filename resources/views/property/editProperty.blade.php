@@ -221,7 +221,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="slug">Slug (URL)</label>
-                        <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug', $property->slug ?? '') }}" required>
+                        <input type="text" class="form-control" name="slug" id="slug" value="{{ $v->slug ?? '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="meta_title">Meta Title</label>
@@ -235,6 +235,11 @@
                     <div class="form-group">
                         <label for="meta_keywords">Meta Keywords</label>
                         <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)">{{ $v->meta_keywords ?? '' }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="short_description">Short Description</label>
+                        <textarea class="form-control" name="short_description" id="short_description" placeholder="Enter short description">{{ $v->short_description ?? '' }}</textarea>
                     </div>
                 </div>
                 <div class="card-body">

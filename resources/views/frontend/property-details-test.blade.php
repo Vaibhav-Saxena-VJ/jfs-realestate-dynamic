@@ -10,7 +10,28 @@
 <?php     
     foreach($data['propertie_details'] as $v) {  
         $price_range = $v->from_price. " to ". $v->to_price;
-        $img = env('baseURL'). "/".$v->image; $boucher = env('baseURL'). "/".$v->boucher;  $address = $v->localities.", ".$v->city; $area = $v->area; $rera = $v->rera; $category = $v->category_name;  $latitude = $v->latitude; $longitude = $v->longitude; $s_price = $v->s_price; $category = $v->category_name;  $land_type = $v->land_type; $builder_name = $v->builder_name; $facilities = $v->facilities; $title = $v->title; $created_at = $v->created_at; $beds = $v->beds; $baths = $v->baths; $balconies = $v->balconies; $parking = $v->parking; $builtup_area =$v->builtup_area; $nearby_locations = json_decode($v->nearby_locations, true); $property_details = $v->property_details;
+        $img = env('baseURL'). "/".$v->image; 
+        $boucher = env('baseURL'). "/".$v->boucher;  
+        $address = $v->localities.", ".$v->city; 
+        $area = $v->area; 
+        $rera = $v->rera; 
+        $category = $v->category_name;  
+        $latitude = $v->latitude; 
+        $longitude = $v->longitude; 
+        $s_price = $v->s_price; 
+        $category = $v->category_name;  
+        $land_type = $v->land_type; 
+        $builder_name = $v->builder_name; 
+        $facilities = $v->facilities; 
+        $title = $v->title; $created_at = $v->created_at; 
+        $beds = $v->beds; 
+        $baths = $v->baths; 
+        $balconies = $v->balconies; 
+        $parking = $v->parking; 
+        $builtup_area =$v->builtup_area; 
+        $nearby_locations = json_decode($v->nearby_locations, true); 
+        $property_details = $v->property_details;
+        $short_description = $v->short_description;
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -389,6 +410,31 @@
                                                 @endforeach
                                             </ul>
                                         @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-item-content bg-white rounded p-4 mt-3 shadow-sm">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <div class="property_block_wrap style-2">
+                                <div class="property_block_wrap_header">
+                                    <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne6" aria-controls="clOne6" href="javascript:void(0);" aria-expanded="{{ (is_array($nearby_locations) && count($nearby_locations) > 0) ? 'true' : 'false' }}">
+                                        <h2 class="property_block_title">
+                                            Popular Searches
+                                            <span class="float-end">
+                                                <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="{{ (is_array($nearby_locations) && count($nearby_locations) > 0) ? 'true' : 'false' }}"></i>
+                                            </span>
+                                            <i class="fa-sharp fa-solid fa-badge-check"></i>
+                                        </h2>
+                                    </a>
+                                </div>
+                                <div id="clOne6" class="panel-collapse collapse show" aria-labelledby="clOne6">
+                                    <div class="block-body">
+                                        {!! $short_description !!}
                                     </div>
                                 </div>
                             </div>

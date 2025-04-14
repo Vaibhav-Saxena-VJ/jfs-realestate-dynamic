@@ -167,13 +167,13 @@
                     </div>
 
                     <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label class="form-label">Property Description</label>
-                                <textarea name="property_description" id="editor" class="form-control" rows="5">
-                                    
-                                </textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Property Description</label>
+                            <textarea name="property_description" id="editor" class="form-control" rows="5">
+                                
+                            </textarea>
                         </div>
+                    </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
@@ -284,6 +284,11 @@
                 <div class="form-group">
                     <label for="meta_keywords"><strong>Meta Keywords</strong></label>
                     <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="short_description">Short Description</label>
+                    <textarea class="form-control" name="short_description" id="short_description" placeholder="Enter short description"></textarea>
                 </div>
             </div>
 

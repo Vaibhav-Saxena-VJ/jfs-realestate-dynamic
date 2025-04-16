@@ -1,8 +1,7 @@
 @extends('frontend.layouts.header')
-@section('title', "Properties in Pune| Affordable property in PCMC - Jfinserv")
-@section('description', "Looking for the Properties in Pune? Our Affordable property in PCMC  offers competitive offers to help you secure your dream home. Apply now.")
-@section('keywords', "Properties in Pune, Affordable property in PCMC, Houses for sell in Pune, Buy house in Pune")
-
+@section('title', "New Under Constructrion Properties in Pune and PCMC")
+@section('description', "Explore new under-construction projects in Pune and PCMC. Buy premium flats in gated communities with modern amenities at prime locations in Pune and PCMC.")
+@section('keywords', "new under constructrion projects in pune, Under Constructrion Properties in PCMC, Luxury apartments in Pune, Best residential projects in Pune, Premium real estate investment in Pune, High-end residential projects in Pune, Buy luxury flats in Pune, Gated communities with modern amenities in Pune, Spacious apartments in Pune, Top real estate projects by Godrej Properties, Flats with premium interiors in Pune, Property in Prime location of pune")
 @section('scripts', "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js")
 @section('scripts2', "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
 
@@ -12,7 +11,7 @@
     <div class="row">
         <div class="col-md-4 custom-nav">
             <a href="{{ asset('') }}">
-                <img src="{{ asset('theme') }}/frontend/img/logo-g1.png" alt="Logo" width="90px">
+                <img src="{{ asset('theme') }}/frontend/img/logo-g1.png" alt="new under constructrion projects in pune" width="90px">
             </a>
         </div>
     </div>
@@ -356,7 +355,7 @@
                                     <a href="{{ $property['link'] }}" target="_blank">
                                         <div class="blog-item shadow-sm rounded">
                                             <div class="blog-img position-relative">
-                                                <img src="{{ asset('theme/frontend/lp/' . $property['img']) }}" class="img-fluid rounded-top w-100" alt="">
+                                                <img src="{{ asset('theme/frontend/lp/' . $property['img']) }}" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                                                 <div class="blog-categiry">
                                                     <span>{{ $property['category'] }}</span>
                                                 </div>
@@ -431,7 +430,7 @@
                                     <a href="{{ url($v->slug . '-' . $v->properties_id) }}" target="_blank">
                                         <div class="blog-item">
                                             <div class="blog-img">
-                                                <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="" style="height: 175px">
+                                                <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune" style="height: 175px">
                                                 <div class="blog-categiry">
                                                     <span>Featured</span>
                                                 </div>
@@ -504,7 +503,7 @@
                                     <a href="{{ url($v->slug . '-' . $v->properties_id) }}" target="_blank">
                                         <div class="blog-item">
                                             <div class="blog-img">
-                                                <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="" style="height: 175px">
+                                                <img src="{{ $img }}" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune" style="height: 175px">
                                                 <div class="blog-categiry">
                                                     <span>{{ $category }}</span>
                                                 </div>
@@ -605,7 +604,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/Home_Loan.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/Home_Loan.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-house-chimney fa-2x"></i>
                         </div> -->
@@ -621,7 +620,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/Project_Loan.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/Project_Loan.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-building-shield fa-2x"></i>
                         </div> -->
@@ -637,7 +636,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/Loan_Against_Property.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/Loan_Against_Property.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                     </div>
                     <div class="service-content p-4">
                         <div class="service-content-inner">
@@ -650,7 +649,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/loan-assist.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/loan-assist.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-house-laptop fa-2x"></i>
                         </div> -->
@@ -667,7 +666,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/MSME_Loan.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/MSME_Loan.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-business-time fa-2x"></i>
                         </div> -->
@@ -683,7 +682,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('theme') }}/frontend/img/visits.jpg" class="img-fluid rounded-top w-100" alt="">
+                        <img src="{{ asset('theme') }}/frontend/img/visits.jpg" class="img-fluid rounded-top w-100" alt="new under constructrion projects in pune">
                         <!-- <div class="service-icon p-3">
                             <i class="fa-solid fa-house-laptop fa-2x"></i>
                         </div> -->

@@ -110,26 +110,19 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">Select BHK</label>
-                                <input type="text" name="select_bhk" class="form-control" placeholder="BHK" value="{{ $v->select_bhk }}"  />
-
-                            </div>
-                        </div> -->
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="mb-3">
                                 <label class="form-label">Starting Price</label>
                                 <input type="text" name="s_price" class="form-control" placeholder="Staring price" value="{{ $v->s_price }}" />
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="mb-3">
                                 <label class="form-label">Carpet area</label>
                                 <input type="text" name="area" class="form-control" placeholder="Carpet Area" value="{{ $v->area }}" />
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="mb-3">
                                 <label class="form-label">Built-up area</label>
                                 <input type="text" name="builtup_area" class="form-control" placeholder="Builtup Area" value="{{ $v->builtup_area }}" />

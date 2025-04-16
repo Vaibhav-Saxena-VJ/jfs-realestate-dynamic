@@ -1,8 +1,7 @@
 @extends('frontend.layouts.header')
-@section('title', "Properties in Pune| Affordable property in PCMC - Jfinserv")
-@section('description', "Looking for the Properties in Pune? Our Affordable property in PCMC  offers competitive offers to help you secure your dream home. Apply now.")
-@section('keywords', "Properties in Pune, Affordable property in PCMC, Houses for sell in Pune, Buy house in Pune")
-
+@section('title', "New Under Constructrion Properties in Pune and PCMC")
+@section('description', "Explore new under-construction projects in Pune and PCMC. Buy premium flats in gated communities with modern amenities at prime locations in Pune and PCMC.")
+@section('keywords', "Properties in Pune, New Under Constructrion Properties in Pune, Luxury apartments in Pune, Best residential projects in Pune, Premium real estate investment in Pune, High-end residential projects in Pune, Buy luxury flats in Pune, Gated communities with modern amenities in Pune, Spacious apartments in Pune, Top real estate projects by Godrej Properties, Flats with premium interiors in Pune, Property in Prime location of pune")
 @section('scripts', "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js")
 @section('scripts2', "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
 

@@ -30,6 +30,7 @@
         $boucher = env('baseURL'). "/".$v->boucher;
         
 ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 <form id="editProperty">
     @csrf
     <!-- Breadcrumbs -->
@@ -130,41 +131,24 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label class="form-label">Select BHK</label>
-                                <input type="text" name="select_bhk" class="form-control" placeholder="BHK" value="{{ $v->select_bhk }}"  />
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label class="form-label">Bedrooms</label>
-                                <input type="text" name="beds" class="form-control" value="{{ $v->beds }}"  /> 
-                            </div>
-                        </div>
+                                <select class="form-control" name="select_bhk">
+                                    <option>Select BHK</option>
+                                    @php
+                                        $bhkOptions = ['1','2','3','4','5','6','2 & 3','2,3 & 4','3 & 4','3,4 & 5'];
+                                        $selectedBhk = $data['propertie_details'][0]->select_bhk ?? '';
+                                    @endphp
 
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label class="form-label">Bathrooms</label>
-                                <input type="text" name="baths" class="form-control" placeholder="BHK" value="{{ $v->baths }}"  />
+                                    @foreach ($bhkOptions as $option)
+                                        <option value="{{ $option }}" {{ $selectedBhk == $option ? 'selected' : '' }}>{{ $option }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
-                        
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label class="form-label">Balconies</label>
-                                <input type="text" name="balconies" class="form-control" value="{{ $v->balconies }}"  />
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label class="form-label">Parking</label>
-                                <input type="text" name="parking" class="form-control" value="{{ $v->parking }}"  />
-                            </div>  
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label">Property Description</label>
-                                <textarea name="property_description" id="editor" class="form-control" rows="5">
-                                    {{ $data['propertie_details'][0]->property_details }}
+                                <textarea name="property_description" id="summernote" class="form-control" rows="5">
+                                    {!! $data['propertie_details'][0]->property_details !!}
                                 </textarea>
                             </div>
                         </div>
@@ -331,58 +315,62 @@
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 
-<!-- Initialize TinyMCE -->
 <script>
-    tinymce.init({
-        selector: '#editor',
-        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
-        toolbar: 'undo redo | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
-        height: 400,
-        menubar: true,
-        branding: false,
-
-        images_upload_url: '/upload-image',
-        automatic_uploads: false,
-        images_reuse_filename: true,
-        paste_data_images: false,
-
-        images_upload_handler: function (blobInfo, success, failure) {
-            let formData = new FormData();
-            formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-            // Get CSRF token
-            let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            formData.append('_token', csrfToken);
-
-            fetch('/upload-image', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.location) {
-                    let cleanUrl = result.location.replace(/^.*?:\/\//, ''); // Removes http:// or https:// if needed
-                    success(cleanUrl);
-                } else {
-                    failure('Image upload failed');
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            height: 400,
+            fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
+            fontNamesIgnoreCheck: ['Times New Roman'],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        uploadImage(files[i]);
+                    }
                 }
-            })
-            .catch(error => {
-                console.error('Upload error:', error);
-                failure('Image upload failed');
+            }
+        });
+
+        function uploadImage(file) {
+            let data = new FormData();
+            data.append("file", file);
+            data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+
+            $.ajax({
+                url: '/upload-summernote-image',
+                method: "POST",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.url) {
+                        // Ask for alt text
+                        let altText = prompt("Enter alt text for the image:", "");
+
+                        // Create image element with alt
+                        const imgNode = $('<img>')
+                            .attr('src', response.url)
+                            .attr('alt', altText || '');
+
+                        // Insert image with alt into the editor
+                        $('#summernote').summernote('insertNode', imgNode[0]);
+                    }
+                },
+                error: function () {
+                    alert('Image upload failed!');
+                }
             });
         }
-    });
 
-    // Ensure TinyMCE updates the textarea before form submission
-    document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('form').addEventListener('submit', function() {
-        tinymce.triggerSave(); // Ensure TinyMCE updates textarea
+        // Set content on form submit
+        $('form').on('submit', function () {
+            $('#property_description').val($('#summernote').summernote('code'));
+        });
     });
-});
 </script>
-
 
 <script>
     const chooseFile = document.getElementById("choose-file");

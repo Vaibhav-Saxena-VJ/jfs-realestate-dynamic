@@ -416,6 +416,7 @@ Route::delete('/banners/{id}', [BannerController::class, 'destroy'])->name('bann
 
 //text-editor
 Route::post('/upload-tinymce-image', [TinyMCEController::class, 'uploadImage'])->name('tinymce.upload');
+Route::post('/upload-summernote-image', [TinyMCEController::class, 'uploadSummernoteImage']);
 
 // Landing Pages
 Route::get('/sukhwani-skylines', function () {

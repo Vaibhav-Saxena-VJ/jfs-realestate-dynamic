@@ -312,7 +312,7 @@ public function allProperties()
                 'property_title' => 'required|string|max:255',
                 'meta_title' => 'required|string|max:255',
                 'meta_description' => 'required|string|max:255',
-                'meta_keywords' => 'required|string|max:255',
+                'meta_keywords' => 'required|string',
                 'short_description' => 'required|string|max:255',
                 'property_type_id' => 'required|integer',
                 'builder_name' => 'nullable|string|max:255',

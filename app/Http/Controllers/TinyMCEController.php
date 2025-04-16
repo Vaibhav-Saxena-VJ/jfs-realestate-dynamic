@@ -17,4 +17,17 @@ class TinyMCEController extends Controller
             return response()->json(['location' => asset($path . $filename)], 200);
         }
     }
+    public function uploadSummernoteImage(Request $request)
+{
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads/summernote'), $filename);
+        $url = asset('uploads/summernote/' . $filename);
+
+        return response()->json(['url' => $url]);
+    }
+
+    return response()->json(['error' => 'Image upload failed'], 400);
+}
 }

@@ -5,6 +5,8 @@
 @endsection
 @section('content')
 @parent
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+
 <form id="addNewProperty">
     @csrf
     <div class="card-header py-3">
@@ -100,9 +102,9 @@
                                 <option value="5">5</option>
                                 <option value="6">6</option>
                                 <option value="2 & 3">2 & 3</option>
-                                <option value="2,3 & 4">2,3 & 4</option>
+                                <option value="2, 3 & 4">2, 3 & 4</option>
                                 <option value="3 & 4">3 & 4</option>
-                                <option value="3,4 & 5">3,4 & 5</option>
+                                <option value="3, 4 & 5">3, 4 & 5</option>
                             </select> 
                         </div>
                     </div>
@@ -169,9 +171,7 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">Property Description</label>
-                            <textarea name="property_description" id="editor" class="form-control" rows="5">
-                                
-                            </textarea>
+                            <textarea name="property_description" id="summernote" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -360,49 +360,59 @@
 @section('script')
 @parent
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 
-<!-- Initialize TinyMCE -->
 <script>
-    tinymce.init({
-    selector: '#editor',
-    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help',
-    toolbar: 'undo redo | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
-    height: 400,
-    menubar: true,
-    branding: false,
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            height: 400,
+            fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
+            fontNamesIgnoreCheck: ['Times New Roman'],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        uploadImage(files[i]);
+                    }
+                }
+            }
+        });
 
-    images_upload_url: '/upload-image',
-    automatic_uploads: false,
-    images_reuse_filename: true,
-    paste_data_images: false,
+        function uploadImage(file) {
+            let data = new FormData();
+            data.append("file", file);
+            data.append("_token", $('meta[name="csrf-token"]').attr('content'));
 
-    images_upload_handler: function (blobInfo, success, failure) {
-    let formData = new FormData();
-    formData.append('file', blobInfo.blob(), blobInfo.filename());
+            $.ajax({
+                url: '/upload-summernote-image',
+                method: "POST",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.url) {
+                        // Ask for alt text
+                        let altText = prompt("Enter alt text for the image:", "");
 
-    // Get CSRF token
-    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    formData.append('_token', csrfToken);
+                        // Create image element with alt
+                        const imgNode = $('<img>')
+                            .attr('src', response.url)
+                            .attr('alt', altText || '');
 
-    fetch('/upload-image', {
-    method: 'POST',
-    body: formData
-    })
-    .then(response => response.json())
-    .then(result => {
-    if (result.location) {
-    let cleanUrl = result.location.replace(/^.*?:\/\//, ''); // Removes http:// or https:// if needed
-    success(cleanUrl);
-    } else {
-    failure('Image upload failed');
-    }
-    })
-    .catch(error => {
-    console.error('Upload error:', error);
-    failure('Image upload failed');
-    });
-    }
+                        // Insert image with alt into the editor
+                        $('#summernote').summernote('insertNode', imgNode[0]);
+                    }
+                },
+                error: function () {
+                    alert('Image upload failed!');
+                }
+            });
+        }
+
+        // Set content on form submit
+        $('form').on('submit', function () {
+            $('#property_description').val($('#summernote').summernote('code'));
+        });
     });
 </script>
 

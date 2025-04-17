@@ -317,7 +317,7 @@ public function allProperties()
                 'property_type_id' => 'required|integer',
                 'builder_name' => 'nullable|string|max:255',
                 's_price' => 'nullable|numeric',
-                'select_bhk' => 'nullable|integer',
+                'select_bhk' => 'nullable|string',
                 'property_description' => 'nullable|string',
                 'property_address' => 'nullable|string',
                 'email_id' => 'nullable|email|max:255',

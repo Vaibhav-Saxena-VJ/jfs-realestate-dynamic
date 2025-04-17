@@ -32,6 +32,7 @@
         $nearby_locations = json_decode($v->nearby_locations, true); 
         $property_details = $v->property_details;
         $short_description = $v->short_description;
+        $select_bhk = $v->select_bhk;
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -95,7 +96,7 @@
                                                 <!-- <p><span class="prop-type">{{ $category }}</span></p> -->
                                                 <h2 class="mb-0 text-capitalize">{{ $v->title }} <span class="rera"><i class="far fa-check-circle" style="color: #f74400; font-size: 14px;"></i> RERA:  {{ $rera }}</span></h2>
                                                 <p class="mb-0">By {{ $builder_name }}</p>
-                                                <p class="mb-0">{{ $beds }} BHK</p>
+                                                <p class="mb-0">{{ str_replace('"', '', $select_bhk) }} BHK</p>
                                                 <p class="mb-0">{{ $address }}</p>
                                             </div>
                                             <div class="col-9 col-md-4">

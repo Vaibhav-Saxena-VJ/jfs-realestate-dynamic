@@ -60,7 +60,7 @@ JFS | Add Property
                         <td>
                             <a class="btn btn-primary btn-xs eye" title="ViewDetails" href="{{ url('viewDetails/'.$p->properties_id) }}"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-primary btn-xs edit" title="Edit" href="{{ url('editProperty/'.$p->properties_id) }}"><i class="fa fa-edit"></i></a>
-                            <button class="btn btn-danger btn-xs delete" title="Delete" onclick="deleteProperty('{{$p->properties_id}}')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger btn-xs delete" title="Delete" onclick="deletePropertie('{{$p->properties_id}}')"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     @endforeach

@@ -134,7 +134,7 @@
                                 <select class="form-control" name="select_bhk">
                                     <option>Select BHK</option>
                                     @php
-                                        $bhkOptions = ['1','2','3','4','5','6','2 & 3','2,3 & 4','3 & 4','3,4 & 5'];
+                                        $bhkOptions = ['1','2','3','4','5','6','2 & 3','2, 3 & 4','3 & 4','3, 4 & 5'];
                                         $selectedBhk = $data['propertie_details'][0]->select_bhk ?? '';
                                     @endphp
 
@@ -376,23 +376,23 @@
     const chooseFile = document.getElementById("choose-file");
     const imgPreview = document.getElementById("img-preview");
 
-chooseFile.addEventListener("change", function () {
-  getImgData();
-});
+    chooseFile.addEventListener("change", function () {
+    getImgData();
+    });
 
-function getImgData() {
-  const files = chooseFile.files[0];
-  if (files) {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(files);
-    fileReader.addEventListener("load", function () {
-      imgPreview.style.display = "block";
-      imgPreview.innerHTML = '<img src="' + this.result + '" />';
-      document.getElementById('old_image').style.display = "none";
+    function getImgData() {
+        const files = chooseFile.files[0];
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+            imgPreview.style.display = "block";
+            imgPreview.innerHTML = '<img src="' + this.result + '" />';
+            document.getElementById('old_image').style.display = "none";
 
-    });    
-  }
-}
+            });    
+        }
+    }
 </script>
 
 <script>   

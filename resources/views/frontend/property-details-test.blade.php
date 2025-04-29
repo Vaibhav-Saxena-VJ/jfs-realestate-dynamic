@@ -2,6 +2,7 @@
 @section('title', $meta_title)
 @section('description', $meta_description)
 @section('keywords', $meta_keywords)
+@section('schema_markup') {!! $schema_markup !!} @endsection
 
 @section('link', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/css/splide.min.css")
 @section('scripts', "https://cdn.jsdelivr.net/npm/@splidejs/splide@1.2.0/dist/js/splide.min.js")
@@ -301,9 +302,19 @@
                                     <div class="block-body">
                                         @if(isset($facilities) && !empty($facilities))
                                             @php
-                                                $facilitiesArray = explode(',', $facilities); // Convert string to array
+                                                // Check if it's a JSON string and decode it
+                                                if (is_string($facilities) && (Str::startsWith($facilities, '[') || Str::startsWith($facilities, '{'))) {
+                                                    $facilitiesArray = json_decode($facilities, true);
+                                                } elseif (is_array($facilities)) {
+                                                    $facilitiesArray = $facilities;
+                                                } else {
+                                                    $facilitiesArray = explode(',', $facilities);
+                                                }
 
-                                                // Define SVG icon paths for each facility
+                                                // Clean up each facility
+                                                $facilitiesArray = array_map('trim', $facilitiesArray);
+
+                                                // Define SVG icon paths
                                                 $icons = [
                                                     'WiFi' => 'theme/frontend/img/icons/wifi.svg',
                                                     'Parking' => 'theme/frontend/img/icons/parking.svg',
@@ -323,7 +334,7 @@
                                             <div class="row row-cols-3 g-3">
                                                 @foreach($facilitiesArray as $facility)
                                                     @php 
-                                                        $facility = trim($facility); // Remove extra spaces
+                                                        $facility = trim($facility, '"'); // Remove quotes if any
                                                         $iconPath = $icons[$facility] ?? 'theme/frontend/img/icons/default.svg'; // Default icon
                                                     @endphp
                                                     <div class="col-6 col-md-3">
@@ -340,7 +351,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

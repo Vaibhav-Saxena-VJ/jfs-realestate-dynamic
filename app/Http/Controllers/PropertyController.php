@@ -74,6 +74,7 @@ class PropertyController extends Controller
             $p->select_bhk = json_encode($request->select_bhk);
             $p->s_price = $request->s_price;
             $p->rera = $request->rera;
+            $p->schema_markup = $request->schema_markup;
             $p->land_type = $request->land_type;
             $p->location = $request->input('location');
             $p->latitude = $request->input('latitude');
@@ -123,94 +124,96 @@ class PropertyController extends Controller
  * @param string $folder - The folder where the file should be saved
  * @return string - The file path of the uploaded file
  */
-private function handleFileUpload(Request $request, $inputName, $folder)
-{
-    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-    if ($request->hasFile($inputName)) {
-        $file_name = substr(str_shuffle($permitted_chars), 0, 8) . time() . '.' . $request->file($inputName)->extension();
-        $file_path = "$folder/" . $file_name;
-        $request->file($inputName)->move(public_path($folder), $file_path);
-        return $file_path;
-    }
-    return ""; // Return an empty string if no file was uploaded
-}
-
-public function allProperties()
-{
-    $role_id = Session::get('role_id'); 
-    $user_id = Session::get('user_id'); 
-
-    // Main Query
-    $query = DB::table('properties')
-        ->join('price_range', 'properties.price_range_id', '=', 'price_range.range_id')
-        ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
-        ->where('properties.is_active', 1)
-        ->select(
-            'properties.properties_id',
-            'properties.title',
-            'properties.property_type_id',
-            'properties.short_description',
-            'properties.builder_name',
-            'properties.select_bhk',
-            'properties.land_type',
-            'properties.address',
-            'properties.rera',
-            'properties.facilities',
-            'properties.s_price',
-            'properties.beds',
-            'properties.baths',
-            'properties.balconies',
-            'properties.parking',
-            'properties.builtup_area',
-            'properties.contact',
-            'price_range.from_price',
-            'price_range.to_price',
-            'property_category.category_name', // Ensure this is selected
-            'properties.is_featured',
-            'properties.image'
-        );
-
-    if ($role_id == 3) {
-        $query->where('properties.creator_id', $user_id);
+    private function handleFileUpload(Request $request, $inputName, $folder)
+    {
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        if ($request->hasFile($inputName)) {
+            $file_name = substr(str_shuffle($permitted_chars), 0, 8) . time() . '.' . $request->file($inputName)->extension();
+            $file_path = "$folder/" . $file_name;
+            $request->file($inputName)->move(public_path($folder), $file_path);
+            return $file_path;
+        }
+        return ""; // Return an empty string if no file was uploaded
     }
 
-    // Fetch All Properties (Curated)
-    $data['allProperties'] = $query->paginate(50);
-    
+    public function allProperties()
+    {
+        $role_id = Session::get('role_id'); 
+        $user_id = Session::get('user_id'); 
 
-    // Fetch Only Featured Properties
-    $data['featuredProperties'] = DB::table('properties')
-        ->join('price_range', 'properties.price_range_id', '=', 'price_range.range_id')
-        ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
-        ->where('properties.is_active', 1)
-        ->where('properties.is_featured', 1) // Fetch only featured properties
-        ->select(
-            'properties.properties_id',
-            'properties.title',
-            'properties.property_type_id',
-            'properties.builder_name',
-            'properties.select_bhk',
-            'properties.land_type',
-            'properties.address',
-            'properties.rera',
-            'properties.facilities',
-            'properties.s_price',
-            'properties.beds',
-            'properties.baths',
-            'properties.balconies',
-            'properties.parking',
-            'properties.builtup_area',
-            'properties.contact',
-            'properties.short_description',
-            'price_range.from_price',
-            'price_range.to_price',
-            'property_category.category_name', // Fix: Ensure category_name is included
-            'properties.image'
-        )
-        ->paginate(10);
+        // Main Query
+        $query = DB::table('properties')
+            ->join('price_range', 'properties.price_range_id', '=', 'price_range.range_id')
+            ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
+            ->where('properties.is_active', 1)
+            ->select(
+                'properties.properties_id',
+                'properties.title',
+                'properties.property_type_id',
+                'properties.short_description',
+                'properties.builder_name',
+                'properties.select_bhk',
+                'properties.land_type',
+                'properties.address',
+                'properties.rera',
+                'properties.facilities',
+                'properties.s_price',
+                'properties.beds',
+                'properties.baths',
+                'properties.balconies',
+                'properties.parking',
+                'properties.builtup_area',
+                'properties.contact',
+                'price_range.from_price',
+                'price_range.to_price',
+                'property_category.category_name', // Ensure this is selected
+                'properties.is_featured',
+                'properties.image',
+                'properties.schema_markup'
+            );
 
-    return view('property.allProperties', compact('data'));
-}
+        if ($role_id == 3) {
+            $query->where('properties.creator_id', $user_id);
+        }
+
+        // Fetch All Properties (Curated)
+        $data['allProperties'] = $query->paginate(50);
+        
+
+        // Fetch Only Featured Properties
+        $data['featuredProperties'] = DB::table('properties')
+            ->join('price_range', 'properties.price_range_id', '=', 'price_range.range_id')
+            ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
+            ->where('properties.is_active', 1)
+            ->where('properties.is_featured', 1) // Fetch only featured properties
+            ->select(
+                'properties.properties_id',
+                'properties.title',
+                'properties.property_type_id',
+                'properties.builder_name',
+                'properties.select_bhk',
+                'properties.land_type',
+                'properties.address',
+                'properties.rera',
+                'properties.facilities',
+                'properties.s_price',
+                'properties.beds',
+                'properties.baths',
+                'properties.balconies',
+                'properties.parking',
+                'properties.builtup_area',
+                'properties.contact',
+                'properties.short_description',
+                'price_range.from_price',
+                'price_range.to_price',
+                'property_category.category_name', // Fix: Ensure category_name is included
+                'properties.image',
+                'properties.schema_markup'
+            )
+            ->paginate(10);
+
+        return view('property.allProperties', compact('data'));
+    }
 
 
     public function toggleFeatured(Request $request)
@@ -231,13 +234,14 @@ public function allProperties()
             'message' => 'Property not found or no changes made!'
         ]);
     }
+
     public function pendingProperties()
     {
             $data['allProperties'] = DB::table('properties')
         ->join('price_range', 'properties.price_range_id', '=', 'price_range.range_id')
         ->join('property_category', 'properties.property_type_id', '=', 'property_category.pid')
         ->where('properties.is_active',0)
-        ->select('properties.properties_id', 'properties.title', 'properties.property_type_id', 'properties.builder_name','properties.select_bhk', 'properties.land_type',
+        ->select('properties.properties_id', 'properties.title', 'properties.property_type_id', 'properties.builder_name','properties.select_bhk', 'properties.land_type', 'properties.schema_markup',
         'properties.address','properties.facilities', 'properties.rera', 'properties.s_price', 'properties.builtup_area', 'properties.beds', 'properties.baths', 'properties.balconies', 'properties.parking', 'properties.contact', 'price_range.from_price', 'price_range.to_price', 'property_category.category_name')
         ->paginate(50);
         
@@ -313,7 +317,7 @@ public function allProperties()
                 'meta_title' => 'required|string|max:255',
                 'meta_description' => 'required|string|max:255',
                 'meta_keywords' => 'required|string',
-                'short_description' => 'required|string',
+                'short_description' => 'nullable|string',
                 'property_type_id' => 'required|integer',
                 'builder_name' => 'nullable|string|max:255',
                 's_price' => 'nullable|numeric',
@@ -335,7 +339,8 @@ public function allProperties()
                 'localities' => 'nullable|string',
                 'city' => 'nullable|string',
                 'property_status' => 'nullable|string',
-                'slug' => 'required|string|max:255'
+                'slug' => 'nullable|string',
+                'schema_markup' => 'nullable|string',
             ]);
     
             $propertie_id = $request->propertie_id;
@@ -387,6 +392,7 @@ public function allProperties()
                 'image' => $property_image_name,
                 'boucher' => $boucher_name,
                 'slug' => $request->slug,
+                'schema_markup' => $request->schema_markup,
                 'facilities' => $request->amenities ?? '',
                 'area' => $request->area ?? 0,
                 'builtup_area' => $request->builtup_area ?? 0,
@@ -472,6 +478,7 @@ public function allProperties()
             dd($e->getMessage());
         }
     }
+
     public function uploadTinyMCEImage(Request $request) {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -484,6 +491,7 @@ public function allProperties()
         
         return response()->json(['error' => 'Image upload failed'], 400);
     }
+
     public function getLocalities()
     {
         $localities = DB::table('localities')->get();

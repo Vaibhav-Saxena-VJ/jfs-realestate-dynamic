@@ -147,11 +147,21 @@
                         <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label">Property Description</label>
-                                <textarea name="property_description" id="summernote" class="form-control" rows="5">
+                                <textarea name="property_description" id="summernote-property" class="form-control" rows="5">
                                     {!! $data['propertie_details'][0]->property_details !!}
                                 </textarea>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label">Short Description</label>
+                                <textarea name="short_description" id="summernote-short" class="form-control" rows="5">
+                                    {!! $v->short_description ?? '' !!}
+                                </textarea>
+                            </div>
+                        </div>
+
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label class="form-label">Property Address</label>
@@ -223,6 +233,15 @@
                                 <input type="tel" class="form-control jixlink2" name="contact_number" value="{{ $v->contact }}" >
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label">Schema Markup / Open Graph Meta / Twitter Card Meta</label>
+                                <textarea name="schema_markup" id="schema_markup" class="form-control" rows="5">
+                                    {!! $v->schema_markup !!}
+                                </textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,11 +264,6 @@
                     <div class="form-group">
                         <label for="meta_keywords">Meta Keywords</label>
                         <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)">{{ $v->meta_keywords ?? '' }}</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="short_description">Short Description</label>
-                        <textarea class="form-control" name="short_description" id="short_description" placeholder="Enter short description">{{ $v->short_description ?? '' }}</textarea>
                     </div>
                 </div>
                 <div class="card-body">
@@ -320,20 +334,36 @@
 
 <script>
     $(document).ready(function () {
-        $('#summernote').summernote({
+        // Initialize Summernote for Property Description
+        $('#summernote-property').summernote({
             height: 400,
             fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
             fontNamesIgnoreCheck: ['Times New Roman'],
             callbacks: {
                 onImageUpload: function (files) {
                     for (let i = 0; i < files.length; i++) {
-                        uploadImage(files[i]);
+                        uploadImage(files[i], 'property');
                     }
                 }
             }
         });
 
-        function uploadImage(file) {
+        // Initialize Summernote for Short Description
+        $('#summernote-short').summernote({
+            height: 200,
+            fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
+            fontNamesIgnoreCheck: ['Times New Roman'],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        uploadImage(files[i], 'short');
+                    }
+                }
+            }
+        });
+
+        // Function to upload image
+        function uploadImage(file, editorType) {
             let data = new FormData();
             data.append("file", file);
             data.append("_token", $('meta[name="csrf-token"]').attr('content'));
@@ -355,8 +385,12 @@
                             .attr('src', response.url)
                             .attr('alt', altText || '');
 
-                        // Insert image with alt into the editor
-                        $('#summernote').summernote('insertNode', imgNode[0]);
+                        // Insert image with alt into the correct editor
+                        if (editorType === 'property') {
+                            $('#summernote-property').summernote('insertNode', imgNode[0]);
+                        } else {
+                            $('#summernote-short').summernote('insertNode', imgNode[0]);
+                        }
                     }
                 },
                 error: function () {
@@ -367,7 +401,8 @@
 
         // Set content on form submit
         $('form').on('submit', function () {
-            $('#property_description').val($('#summernote').summernote('code'));
+            $('#property_description').val($('#summernote-property').summernote('code'));
+            $('#short_description').val($('#summernote-short').summernote('code'));
         });
     });
 </script>

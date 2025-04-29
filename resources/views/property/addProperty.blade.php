@@ -171,7 +171,14 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label class="form-label">Property Description</label>
-                            <textarea name="property_description" id="summernote" class="form-control" rows="5"></textarea>
+                            <textarea name="property_description" id="summernote-property" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label">Short Description</label>
+                            <textarea name="short_description" id="summernote-short" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -261,12 +268,50 @@
                             <span class="text-danger error-text jixlink2_err"></span>
                         </div>
                     </div>
+
+                    <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label">Schema Markup / Open Graph Meta / Twitter Card Meta</label>
+                            <textarea name="schema_markup" id="schema_markup" class="form-control" placeholder="Add Your Schema" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="mb-3">
+                            <label class="form-label">FAQs</label>
+                            <div id="faqSection">
+                                <div class="faq-item border rounded p-3 mb-3">
+                                    <div class="mb-2">
+                                        <label class="form-label">Question</label>
+                                        <input type="text" name="faq_question[]" class="form-control" placeholder="Enter FAQ Question">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Answer</label>
+                                        <textarea name="faq_answer[]" class="form-control" rows="3" placeholder="Enter FAQ Answer"></textarea>
+                                    </div>
+                                    <button type="button" class="btn btn-danger btn-sm remove-faq">Remove</button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-sm mt-2" id="addFaqBtn">Add More FAQ</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Right side -->
         <div class="col-lg-3 bg-light p-4">
+            <div class=" mb-4">
+                <!-- Multiple Property Images Upload -->
+                <h3 class="h6"><strong>Property Images<span class="text-danger">*</span></strong></h3>
+                <input class="form-control" type="file" accept=".jpg,.jpeg,.png,.webp" name="property_images[]" multiple required />
+                <small class="text-muted">You can upload multiple images (JPG, JPEG, PNG, WEBP).</small>
+
+                <!-- Property Boucher Upload -->
+                <h3 class="h6 mt-2"><strong>Property Brochure<span class="text-danger">*</span></strong></h3>
+                <input class="form-control" type="file" accept=".pdf" name="property_voucher" />
+                <small class="text-muted">Upload the property brochure in PDF format.</small>
+            </div>
             <div class=" mb-4">
                 <div class="form-group">
                     <label for="slug">Slug (URL)</label>
@@ -285,23 +330,6 @@
                     <label for="meta_keywords"><strong>Meta Keywords</strong></label>
                     <textarea class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords (comma separated)"></textarea>
                 </div>
-                
-                <div class="form-group">
-                    <label for="short_description">Short Description</label>
-                    <textarea class="form-control" name="short_description" id="short_description" placeholder="Enter short description"></textarea>
-                </div>
-            </div>
-
-            <div class=" mb-4">
-                <!-- Multiple Property Images Upload -->
-                <h3 class="h6"><strong>Property Images<span class="text-danger">*</span></strong></h3>
-                <input class="form-control" type="file" accept=".jpg,.jpeg,.png,.webp" name="property_images[]" multiple required />
-                <small class="text-muted">You can upload multiple images (JPG, JPEG, PNG, WEBP).</small>
-
-                <!-- Property Boucher Upload -->
-                <h3 class="h6 mt-2"><strong>Property Brochure<span class="text-danger">*</span></strong></h3>
-                <input class="form-control" type="file" accept=".pdf" name="property_voucher" />
-                <small class="text-muted">Upload the property brochure in PDF format.</small>
             </div>
             <!-- Notes -->
 
@@ -364,20 +392,36 @@
 
 <script>
     $(document).ready(function () {
-        $('#summernote').summernote({
+        // Initialize Summernote for Property Description
+        $('#summernote-property').summernote({
             height: 400,
             fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
             fontNamesIgnoreCheck: ['Times New Roman'],
             callbacks: {
                 onImageUpload: function (files) {
                     for (let i = 0; i < files.length; i++) {
-                        uploadImage(files[i]);
+                        uploadImage(files[i], 'property');
                     }
                 }
             }
         });
 
-        function uploadImage(file) {
+        // Initialize Summernote for Short Description
+        $('#summernote-short').summernote({
+            height: 200,
+            fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Helvetica', 'Sans Serif'],
+            fontNamesIgnoreCheck: ['Times New Roman'],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (let i = 0; i < files.length; i++) {
+                        uploadImage(files[i], 'short');
+                    }
+                }
+            }
+        });
+
+        // Function to upload image
+        function uploadImage(file, editorType) {
             let data = new FormData();
             data.append("file", file);
             data.append("_token", $('meta[name="csrf-token"]').attr('content'));
@@ -399,8 +443,12 @@
                             .attr('src', response.url)
                             .attr('alt', altText || '');
 
-                        // Insert image with alt into the editor
-                        $('#summernote').summernote('insertNode', imgNode[0]);
+                        // Insert image with alt into the correct editor
+                        if (editorType === 'property') {
+                            $('#summernote-property').summernote('insertNode', imgNode[0]);
+                        } else {
+                            $('#summernote-short').summernote('insertNode', imgNode[0]);
+                        }
                     }
                 },
                 error: function () {
@@ -411,7 +459,38 @@
 
         // Set content on form submit
         $('form').on('submit', function () {
-            $('#property_description').val($('#summernote').summernote('code'));
+            $('#property_description').val($('#summernote-property').summernote('code'));
+            $('#short_description').val($('#summernote-short').summernote('code'));
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faqSection = document.getElementById('faqSection');
+        const addFaqBtn = document.getElementById('addFaqBtn');
+
+        addFaqBtn.addEventListener('click', function () {
+            const faqItem = document.createElement('div');
+            faqItem.classList.add('faq-item', 'border', 'rounded', 'p-3', 'mb-3');
+            faqItem.innerHTML = `
+                <div class="mb-2">
+                    <label class="form-label">Question</label>
+                    <input type="text" name="faq_question[]" class="form-control" placeholder="Enter FAQ Question">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Answer</label>
+                    <textarea name="faq_answer[]" class="form-control" rows="3" placeholder="Enter FAQ Answer"></textarea>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm remove-faq">Remove</button>
+            `;
+            faqSection.appendChild(faqItem);
+        });
+
+        faqSection.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-faq')) {
+                e.target.parentElement.remove();
+            }
         });
     });
 </script>

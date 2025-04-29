@@ -5,9 +5,8 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <title>@yield('title')</title>
         <meta name="description" content="@yield('description')" />
-        <meta name="Keywords" content="@yield('keywords')">
+        <meta name="keywords" content="@yield('keywords')">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
 
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +34,10 @@
         <!-- Cutomized Scripts and CSS -->
         <script src="@yield('scripts')"></script>
         <script src="@yield('scripts2')"></script>
+        
+        <!-- Schema Markup -->
+        @yield('schema_markup')
+
         <link rel="stylesheet" href="{{ asset('theme') }}/frontend/prop/@yield('links')"/>
         <link rel="stylesheet" href="{{ asset('theme') }}/frontend/prop/@yield('links2')"/>
         <link rel="stylesheet" type="text/css" href="@yield('link')"/>

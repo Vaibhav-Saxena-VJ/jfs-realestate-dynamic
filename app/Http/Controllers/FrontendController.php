@@ -275,7 +275,8 @@ class FrontendController extends Controller
             ->with([
                 'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
                 'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
-                'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords'
+                'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords',
+                'schema_markup' => $propertyDetails->schema_markup ?? 'Default Schema',
             ]);
     }
     

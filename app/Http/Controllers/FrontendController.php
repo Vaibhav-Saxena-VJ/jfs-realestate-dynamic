@@ -240,8 +240,7 @@ class FrontendController extends Controller
         return view('frontend.termcond');
     }
 
-    public function PropDetailsView($slugAndId)
-    {
+    public function PropDetailsView($slugAndId){
         // Separate the slug and ID from the URL segment
         $parts = explode('-', $slugAndId);
         $id = array_pop($parts); // Extract the ID (last part)
@@ -270,14 +269,20 @@ class FrontendController extends Controller
             ->where('properties_id', $propertyDetails->properties_id)
             ->get();
 
+        // Get FAQs related to the property
+        $data['faqs'] = DB::table('faqs')
+            ->where('property_id', $propertyDetails->properties_id)
+            ->get();
+
         // Return view with meta data
         return view('frontend.property-details-test', compact('data'))
-            ->with([
-                'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
-                'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
-                'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords',
-                'schema_markup' => $propertyDetails->schema_markup ?? 'Default Schema',
-            ]);
+        ->with([
+            'faqs' => $data['faqs'],
+            'meta_title' => $propertyDetails->meta_title ?? 'Default Property Title',
+            'meta_description' => $propertyDetails->meta_description ?? 'Default Property Description',
+            'meta_keywords' => $propertyDetails->meta_keywords ?? 'Default Keywords',
+            'schema_markup' => $propertyDetails->schema_markup ?? '',
+        ]);
     }
     
     // Loan Application

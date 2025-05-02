@@ -452,6 +452,48 @@
                         </div>
                     </div>
                 </div>
+
+                @if (!empty($faqs) && count($faqs) > 0)
+                    <div class="about-item-content bg-white rounded p-4 mt-3 shadow-sm">
+                        <div class="row g-4">
+                            <div class="col-md-12">
+                                <div class="property_block_wrap style-2">
+                                    <div class="property_block_wrap_header">
+                                        <a data-bs-toggle="collapse" data-parent="#faqs" data-bs-target="#clOne7" aria-controls="clOne7" href="javascript:void(0);" aria-expanded="true">
+                                            <h2 class="property_block_title">
+                                                Frequently Asked Questions (FAQs)
+                                                <span class="float-end">
+                                                    <i class="bi bi-chevron-down collapse-icon h4" data-bs-toggle="collapse-icon" aria-expanded="true"></i>
+                                                </span>
+                                                <i class="fa-sharp fa-solid fa-badge-check"></i>
+                                            </h2>
+                                        </a>
+                                    </div>
+                                    <div id="clOne7" class="panel-collapse collapse show mt-3" aria-labelledby="clOne6">
+                                        <div class="block-body">
+                                            <div class="accordion" id="faqAccordion">
+                                                @foreach ($faqs as $index => $faq)
+                                                    <div class="accordion-item mb-3">
+                                                        <h3 class="accordion-header" id="heading{{ $index }}">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="false" aria-controls="collapse{{ $index }}">
+                                                                {{ $faq->question }}
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapse{{ $index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
+                                                            <div class="accordion-body">
+                                                                {{ $faq->answer }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
             
             <div class="col-xl-3 wow fadeInRight" data-wow-delay="0.2s">

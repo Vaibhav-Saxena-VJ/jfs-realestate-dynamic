@@ -106,6 +106,20 @@ class PropertyController extends Controller
                 }
             }
 
+            // Save FAQs
+            $faqs = $request->input('faqs', []);
+            if (!empty($faqs)) {
+                foreach ($faqs as $faq) {
+                    DB::table('faqs')->insert([
+                        'property_id' => $p->id,
+                        'question' => $faq['question'],
+                        'answer' => $faq['answer'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+
             // Commit transaction if successful
             DB::commit();
             return response()->json(['status' => 1, 'msg' => 'Property added successfully']);
@@ -393,7 +407,7 @@ class PropertyController extends Controller
                 'boucher' => $boucher_name,
                 'slug' => $request->slug,
                 'schema_markup' => $request->schema_markup,
-                'facilities' => $request->amenities ?? '',
+                'facilities' => is_array($request->amenities) ? implode(', ', $request->amenities) : $request->amenities,
                 'area' => $request->area ?? 0,
                 'builtup_area' => $request->builtup_area ?? 0,
                 'city' => $request->city ?? '',
@@ -413,18 +427,12 @@ class PropertyController extends Controller
     
             // Start transaction
             DB::beginTransaction();
-    
-            // Debugging: Print Update Query
             DB::enableQueryLog();
     
             // Perform update
             $affectedRows = DB::table('properties')->where('properties_id', $propertie_id)->update($updateProperty);
-            
-            if ($affectedRows === 0) {
-                return response()->json(['status' => 0, 'msg' => 'No changes detected!']);
-            }
     
-            // Handle multiple images upload
+            // Save additional images
             if ($request->hasFile('additional_images')) {
                 foreach ($request->file('additional_images') as $image) {
                     $imageName = "property_photoes/" . time() . rand(1000, 9999) . '.' . $image->extension();
@@ -439,22 +447,38 @@ class PropertyController extends Controller
                 }
             }
     
-            // Commit transaction
+            // ✅ Update FAQs
+            DB::table('faqs')->where('property_id', $propertie_id)->delete(); // Remove old FAQs
+    
+            $questions = $request->faq_question ?? [];
+            $answers = $request->faq_answer ?? [];
+    
+            foreach ($questions as $index => $question) {
+                if (!empty($question) && !empty($answers[$index])) {
+                    DB::table('faqs')->insert([
+                        'property_id' => $propertie_id,
+                        'question' => $question,
+                        'answer' => $answers[$index],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+    
             DB::commit();
     
-            // Insert activity logs
+            // Activity Logs
             $username = Session::get('username', 'Unknown User');
             $user_id = Session::get('user_id', 0);
             $details = "Property Updated successfully by " . $username;
             app(UsersController::class)->insertActivityLogs($user_id, $details);
     
             return response()->json(['status' => 1, 'msg' => 'Property updated successfully!', 'query' => DB::getQueryLog()]);
-    
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['status' => 0, 'msg' => 'Error: ' . $e->getMessage()]);
         }
-    }    
+    }        
     
 
     public function deletePropertie(Request $request){

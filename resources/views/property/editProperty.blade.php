@@ -242,6 +242,43 @@
                                 </textarea>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label">FAQs</label>
+                                <div id="faqSection">
+                                    @if (!empty($faqs) && $faqs->count())
+                                        @foreach ($faqs as $faq)
+                                            <div class="faq-item border rounded p-3 mb-3">
+                                                <div class="mb-2">
+                                                    <label class="form-label">Question</label>
+                                                    <input type="text" name="faq_question[]" class="form-control" value="{{ $faq->question }}" placeholder="Enter FAQ Question">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label">Answer</label>
+                                                    <textarea name="faq_answer[]" class="form-control" rows="3" placeholder="Enter FAQ Answer">{{ $faq->answer }}</textarea>
+                                                </div>
+                                                <button type="button" class="btn btn-danger btn-sm remove-faq">Remove</button>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <!-- Default empty FAQ block if no data -->
+                                        <div class="faq-item border rounded p-3 mb-3">
+                                            <div class="mb-2">
+                                                <label class="form-label">Question</label>
+                                                <input type="text" name="faq_question[]" class="form-control" placeholder="Enter FAQ Question">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Answer</label>
+                                                <textarea name="faq_answer[]" class="form-control" rows="3" placeholder="Enter FAQ Answer"></textarea>
+                                            </div>
+                                            <button type="button" class="btn btn-danger btn-sm remove-faq">Remove</button>
+                                        </div>
+                                    @endif
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm mt-2" id="addFaqBtn">Add More FAQ</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -403,6 +440,36 @@
         $('form').on('submit', function () {
             $('#property_description').val($('#summernote-property').summernote('code'));
             $('#short_description').val($('#summernote-short').summernote('code'));
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faqSection = document.getElementById('faqSection');
+        const addFaqBtn = document.getElementById('addFaqBtn');
+
+        addFaqBtn.addEventListener('click', function () {
+            const faqItem = document.createElement('div');
+            faqItem.classList.add('faq-item', 'border', 'rounded', 'p-3', 'mb-3');
+            faqItem.innerHTML = `
+                <div class="mb-2">
+                    <label class="form-label">Question</label>
+                    <input type="text" name="faq_question[]" class="form-control" placeholder="Enter FAQ Question">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Answer</label>
+                    <textarea name="faq_answer[]" class="form-control" rows="3" placeholder="Enter FAQ Answer"></textarea>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm remove-faq">Remove</button>
+            `;
+            faqSection.appendChild(faqItem);
+        });
+
+        faqSection.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-faq')) {
+                e.target.parentElement.remove();
+            }
         });
     });
 </script>

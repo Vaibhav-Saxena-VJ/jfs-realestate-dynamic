@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 use App\Exports\EligibilityExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 require __DIR__.'/auth.php';
 
@@ -77,6 +78,19 @@ Route::get('emi-calculator', [FrontendController::class, 'CalculatorView']);
 Route::get('/', [FrontendController::class, 'properties'])->name('properties');
 
 // Route::get('/property/{slug}/{id}', [FrontendController::class, 'PropDetailsView'])->name('property.details');
+// Old URL redirect
+Route::get('/property-details/{id}', function ($id) {
+    $property = DB::table('properties')->where('properties_id', $id)->first();
+
+    if ($property && isset($property->slug)) {
+        $slugAndId = $property->slug . '-' . $property->properties_id;
+        return redirect("/$slugAndId", 301);
+    }
+
+    abort(404);
+});
+
+// Catch-all for new SEO-friendly property URLs
 Route::get('/{slugAndId}', [FrontendController::class, 'PropDetailsView'])->name('property.details');
 
 Route::get('referral-program', [FrontendController::class, 'ReferralsView']);
@@ -434,3 +448,4 @@ Route::get('/pharande-puneville', function () {
 Route::get('/sukhwani-celaeno', function () {
     return view('frontend.lp.sukhwani-celaeno.index');
 });
+

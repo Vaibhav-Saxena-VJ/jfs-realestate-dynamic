@@ -31,7 +31,7 @@
         
 ?>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
-<form id="editProperty">
+<form id="editProperty" method="POST" action="{{ route('updatePropertie') }}" enctype="multipart/form-data">
     @csrf
     <!-- Breadcrumbs -->
     <div class="card-header py-3">
